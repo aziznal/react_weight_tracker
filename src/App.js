@@ -1,6 +1,8 @@
 import { useState } from 'react';
 
+import './StyleNormalize.css'
 import './App.scss';
+
 
 import Header from "./components/Header";
 import WeightForm from "./components/WeightForm";

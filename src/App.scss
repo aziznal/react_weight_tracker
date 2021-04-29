@@ -1,56 +1,76 @@
 $dark: #1e0e5d;
-$primary: #2e5888;
+$primary: #7e3395;
 $secondary: #db995a;
 
-* {
-  margin: 0;
-  padding: 0;
-}
-
-ul {
-  list-style: none;
-}
-
-a,
-a:link,
-a:hover,
-a:active {
-  text-decoration: none;
-  cursor: pointer;
-}
-
-.container {
-  display: flex;
-
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-
-  border-radius: 6px;
-
-  row-gap: 1em;
-}
+// ### Global Styles ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ###
 
 .row {
-  display: flex;
 
+  display: flex;
   flex-direction: row;
 
   align-items: center;
   justify-content: center;
+
+  width: 100%;
+  
+  margin-block: 1em;
+
 }
 
 .column {
-  display: flex;
 
+  display: flex;
   flex-direction: column;
 
   align-items: center;
   justify-content: center;
+
+  width: 100%;
+
+  margin-block: 1em;
+
 }
 
+.btn {
+  
+  display: block;
+
+  background-color: $secondary;
+
+  padding-inline: 2em;
+  padding-block: .3em;
+
+  margin-inline: 1em;
+  margin-block: .3em;
+
+  
+  border: 1px solid #af68c5;
+  border-radius: 6px;
+  
+  cursor: pointer;
+
+  font-weight: bold;
+
+  transition: 150ms transform ease;
+
+
+  &:hover {
+    transform: translateY(-2px);
+  }
+
+  &:active {
+    transform: translateY(-1px);
+    background-color: #f0c093;
+  }
+
+}
+
+
+// ### Main Container Styles ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ###
+
 .body-wrapper {
-  background-color: $dark;
+  background-color: $primary;
   color: white;
 
   padding: 3em 2em;
@@ -60,8 +80,23 @@ a:active {
   margin-inline: auto;
   margin-top: 10em;
 
-  outline: 10px solid #db995a;
+  border-radius: 5px;
+
+  outline: 10px solid $dark;
 }
+
+
+// ### Misc Styles ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ###
+
+.separator {
+  width: 100%;
+  // margin-block: 3em;
+  border-bottom: 2px solid $dark;
+}
+
+
+
+// ### Header Styles ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ###
 
 header {
   width: 100%;
@@ -71,11 +106,8 @@ header {
   padding-bottom: 1em;
 }
 
-.separator {
-  width: 100%;
-  margin-block: 1em;
-  border-bottom: 2px solid $primary;
-}
+
+// ### Weight Form Styles ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ###
 
 input {
   color: black;
@@ -85,7 +117,7 @@ input {
 label {
   width: 50%;
   font-weight: bold;
-  color: $secondary;
+  color: orange;
 }
 
 .radio-button-group {

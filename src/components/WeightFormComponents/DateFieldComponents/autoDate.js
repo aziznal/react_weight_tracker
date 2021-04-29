@@ -4,13 +4,13 @@ const AutoDateInput = () => {
   return (
     <div className="row">
 
-      <span>Or just use these shortcuts</span>
+      <span style={{marginRight: "2em"}}>Shortcuts</span>
 
-      <button>
-        Today
-      </button>
+      <button className="btn">Today</button>
 
-      <button>Now</button>
+      <span>Or</span>
+
+      <button className="btn">Now</button>
 
     </div>
   )
