@@ -1,11 +1,17 @@
-$dark: #1e0e5d;
-$primary: #7e3395;
+$dark: #16459c;
+$primary: #d9d4e9;
 $secondary: #db995a;
+
+
+
 
 // ### Global Styles ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ###
 
-.row {
+html {
+  scroll-behavior: smooth;
+}
 
+.row {
   display: flex;
   flex-direction: row;
 
@@ -13,13 +19,11 @@ $secondary: #db995a;
   justify-content: center;
 
   width: 100%;
-  
-  margin-block: 1em;
 
+  margin-block: 1em;
 }
 
 .column {
-
   display: flex;
   flex-direction: column;
 
@@ -29,31 +33,29 @@ $secondary: #db995a;
   width: 100%;
 
   margin-block: 1em;
-
 }
 
 .btn {
-  
   display: block;
 
-  background-color: $secondary;
+  background-color: $dark;
 
-  padding-inline: 2em;
-  padding-block: .3em;
+  color: white;
+
+  padding-inline: 2.3em;
+  padding-block: 0.5em;
 
   margin-inline: 1em;
-  margin-block: .3em;
+  margin-block: 0.3em;
 
-  
-  border: 1px solid #af68c5;
+  border: none;
   border-radius: 6px;
-  
+
   cursor: pointer;
 
   font-weight: bold;
 
   transition: 150ms transform ease;
-
 
   &:hover {
     transform: translateY(-2px);
@@ -61,24 +63,62 @@ $secondary: #db995a;
 
   &:active {
     transform: translateY(-1px);
-    background-color: #f0c093;
+    background-color: #210b7c;
+  }
+}
+
+.radio-button {
+  margin-inline: 1em;
+  width: fit-content;
+
+  input {
+    margin-right: 0.5em;
+  }
+
+  input,
+  label {
+    cursor: pointer;
+  }
+
+  display: flex;
+
+  flex-direction: row;
+
+  align-items: center;
+  justify-content: center;
+}
+
+.input-field {
+
+  width: 12em;
+  height: 30px;
+
+  border: none;
+  border-radius: 6px;
+
+  padding-inline: .3em;
+
+  &:hover {
+    outline: 1px solid #3686e1;
   }
 
 }
+
+
 
 
 // ### Main Container Styles ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ###
 
 .body-wrapper {
   background-color: $primary;
-  color: white;
+  // color: white;
 
   padding: 3em 2em;
 
   width: 450px;
 
   margin-inline: auto;
-  margin-top: 10em;
+  margin-block: 10em;
 
   border-radius: 5px;
 
@@ -86,13 +126,16 @@ $secondary: #db995a;
 }
 
 
+
+
 // ### Misc Styles ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ###
 
 .separator {
   width: 100%;
   // margin-block: 3em;
-  border-bottom: 2px solid $dark;
+  border-bottom: 1px solid $dark;
 }
+
 
 
 
@@ -107,6 +150,8 @@ header {
 }
 
 
+
+
 // ### Weight Form Styles ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ###
 
 input {
@@ -116,18 +161,30 @@ input {
 
 label {
   width: 50%;
+
+  box-sizing: border-box;
+
+  padding-right: 2em;
+
+  text-align: right;
+
   font-weight: bold;
-  color: orange;
+  // color: orange;
 }
 
-.radio-button-group {
-  input {
-    margin-right: 0.5em;
-    margin-left: 2em;
-  }
 
-  input,
-  label {
-    cursor: pointer;
-  }
+
+
+// ### Weight Display ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ###
+
+.weight-display {
+
+  margin-block: 1em;
+
+  width: 100%;
+
+
+  font-size: 2rem;
+  text-align: center;
+
 }

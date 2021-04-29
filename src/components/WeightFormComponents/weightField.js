@@ -3,11 +3,35 @@ import { PropTypes } from 'prop-types';
 
 const WeightField = ({ currentUnit, updateUnit, updateWeight }) => {
 
+  const minWeight = 0;
+  const maxWeight = 500;
+
+
+  function clamp(num, min, max) {
+    return Math.min(Math.max(num, min), max);
+  }
+
+
   const getWeightFieldValue = () => {
 
     const weightField = document.getElementById("weight-field")
 
-    return weightField.value;
+    let parsedValue = weightField.value;
+
+    // Empty Input Field
+    if (parsedValue === "") {
+      return minWeight;
+
+    } 
+    
+    else {
+
+      parsedValue = parseFloat(parsedValue);
+
+      parsedValue = clamp(parsedValue, minWeight, maxWeight);
+
+      return parsedValue;
+    }
 
   }
 
@@ -33,6 +57,11 @@ const WeightField = ({ currentUnit, updateUnit, updateWeight }) => {
         <input
           className="input-field weight-input"
           type="number"
+          step="any"
+
+          min={minWeight}
+          max={maxWeight}
+
           id="weight-field"
           name="weight-field"
           onChange={(e) => updateWeightWrapper(e)}

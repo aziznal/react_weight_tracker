@@ -11,12 +11,12 @@ const MetricImperialSwitch = ({ updateUnit }) => {
 
       <div className="row radio-button-group">
 
-        <div className="row">
+        <div className="radio-button">
           <input name="weight-type" type="radio" id="pounds" onChange={() => updateUnit("LBS")} />
           <label htmlFor="pounds">LBS</label>
         </div>
 
-        <div className="row">
+        <div className="radio-button">
           <input name="weight-type" type="radio" id="kilograms" defaultChecked="checked" onChange={() => updateUnit("KG")} />
           <label htmlFor="kilograms">KG</label>
         </div>

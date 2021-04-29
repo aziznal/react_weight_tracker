@@ -8,10 +8,15 @@ import Header from "./components/Header";
 import WeightForm from "./components/WeightForm";
 import MetricImperialSwitch from './components/WeightFormComponents/metricImperialSwitch';
 
+import WeightDisplay from './components/WeightDisplay';
+
 const App = () => {
 
   const [currentUnit, setUnit] = useState("KG");
   const [weight, setWeight] = useState(0);
+
+  const [measureDate, setMeasureDate] = useState();
+  const [measureTime, setMeasureTime] = useState();
 
   return (
     <div className="container body-wrapper">
@@ -32,9 +37,7 @@ const App = () => {
 
       <div className="separator"></div>
 
-      <span>
-        You weigh {weight} {currentUnit}(s)
-      </span>
+      <WeightDisplay currentUnit={currentUnit} weight={weight} />
 
     </div>
 
