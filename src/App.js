@@ -33,11 +33,38 @@ const App = () => {
         updateUnit={setUnit}
         currentUnit={currentUnit}
 
+        updateDate={setMeasureDate}
+        updateTime={setMeasureTime}
+
       />
 
       <div className="separator"></div>
 
       <WeightDisplay currentUnit={currentUnit} weight={weight} />
+
+
+      <div className="column">
+
+        <div className="row">
+          <h3 style={{ marginRight: "1em" }}>
+            Date:
+          </h3>
+
+          <span>{measureDate}</span>
+        </div>
+
+        <div className="row">
+          <h3 style={{ marginRight: "1em" }}>
+            Time:
+          </h3>
+
+          <span>{measureTime}</span>
+
+        </div>
+
+      </div>
+
+
 
     </div>
 

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import WeightField from './WeightFormComponents/weightField';
 import DateField from './WeightFormComponents/dateField';
 
-const WeightForm = ({ currentUnit, updateWeight, updateUnit }) => {
+const WeightForm = ({ currentUnit, updateWeight, updateUnit, updateDate, updateTime}) => {
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -22,7 +22,7 @@ const WeightForm = ({ currentUnit, updateWeight, updateUnit }) => {
 
       <div className="separator"></div>
 
-      <DateField />
+      <DateField updateDate={updateDate} updateTime={updateTime} />
 
     </form >
   )
@@ -32,7 +32,10 @@ WeightForm.propTypes = {
 
   currentUnit: PropTypes.string.isRequired,
   updateWeight: PropTypes.func.isRequired,
-  updateUnit: PropTypes.func.isRequired
+  updateUnit: PropTypes.func.isRequired,
+
+  updateDate: PropTypes.func.isRequired,
+  updateTime: PropTypes.func.isRequired,
 
 }
 
