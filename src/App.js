@@ -11,7 +11,8 @@ import MetricImperialSwitch from './components/WeightFormComponents/metricImperi
 import WeightDisplay from './components/WeightDisplay';
 import DateDisplay from './components/DateDisplay';
 
-import { fetchAllWeights, fetchWeight, updateWeight } from './BackendService';
+import './BackendService';
+import BackendService from './BackendService';
 
 
 const App = () => {
@@ -28,21 +29,8 @@ const App = () => {
   // ### For testing API calls
   (async function(){
 
-    // let res = await fetchAllWeights();
-    // console.log(res);
-
-
-    // let res = await updateWeight(1);
-    // console.log(res);
-
-    try {
-      
-      let res = await fetchWeight(0);
-      console.log(res);
-
-    } catch (error) {
-      console.log("Could'nt't");
-    }
+    let res = await BackendService.fetchEntry(1);
+    console.log(res);
 
   })();
 

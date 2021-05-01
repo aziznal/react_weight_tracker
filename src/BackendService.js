@@ -1,67 +1,98 @@
 
-const LOCAL_HOST = "http://localhost:5000/";
+class BackendService {
 
 
-const checkArgWasPassed = (param) => {
+    constructor() {
+        this.LOCAL_HOST = "http://localhost:5000/";
+    }
 
-    if (param === undefined) throw Error("undefined param. must pass param to function");
+
+    checkArgWasPassed(param) {
+        if (param === undefined) throw Error("undefined param. must pass param to function");
+    }
+
+
+
+    addEntry = async (entry) => {
+
+        // Get all current entries, then add another entry to them and send 'em back.
+        // Horrible! but easy to code.
+
+        await fetch(
+            this.LOCAL_HOST + "weights",
+
+            {
+                method: 'POST',
+
+                headers: {
+                    "Content-type": "application/json"
+                },
+
+                body: JSON.stringify(entry)
+            }
+
+        );
+
+    }
+
+
+    fetchAllEntries = async () => {
+
+        let weightsRequest = await fetch(this.LOCAL_HOST + "weights", { method: "GET" })
+
+        let weights = await weightsRequest.json();
+
+        return weights;
+
+    }
+
+
+    fetchEntry = async (entryId) => {
+
+        this.checkArgWasPassed(entryId);
+
+        let weightRequest = await fetch(this.LOCAL_HOST + `weights/${entryId}`);
+
+        let weight = await weightRequest.json();
+
+        return weight;
+
+    }
+
+
+    updateEntry = async (entryId, updatedField, updatedVal) => {
+
+        this.checkArgWasPassed(entryId);
+
+        let originalWeight = await this.fetchEntry(entryId);
+
+        originalWeight = { ...originalWeight, updatedField: updatedVal };
+
+
+        await fetch(
+            this.LOCAL_HOST + `weights/${entryId}`,
+            {
+                method: 'PUT',
+
+                headers: {
+                    'Content-type': 'application/json'
+                },
+
+                body: JSON.stringify(originalWeight)
+            }
+        );
+
+    }
+
+
+    deleteEntry = async (entryId) => {
+
+        this.checkArgWasPassed(entryId);
+
+        await fetch(this.LOCAL_HOST + `weights/${entryId}`, { method: 'DELETE' });
+
+    }
 
 }
 
-
-const fetchAllWeights = async () => {
-
-    let weightsRequest = await fetch(LOCAL_HOST + "weights", { method: "GET" })
-
-    let weights = await weightsRequest.json();
-
-    return weights;
-
-}
-
-
-const fetchWeight = async (weightId) => {
-
-    checkArgWasPassed(weightId);
-
-    let weightRequest = await fetch(LOCAL_HOST + `weights/${weightId}`);
-
-    let weight = await weightRequest.json();
-
-    return weight;
-
-}
-
-
-const updateWeight = async (weightId, updatedField, updatedVal) => {
-
-    checkArgWasPassed(weightId);
-
-    let originalWeight = await fetchWeight(weightId);
-
-    originalWeight = { ...originalWeight, updatedField: updatedVal };
-
-
-    let updateRequest = await fetch(
-        LOCAL_HOST + `weights/${weightId}`,
-        { 
-            method: 'PUT',
-            
-            headers: {
-                'Content-type': 'application/json'
-            },
-
-            body: JSON.stringify(originalWeight)
-        }
-    )
-
-}
-
-
-export {
-
-    fetchAllWeights,
-    fetchWeight,
-    updateWeight
-
-}
+export default new BackendService();
