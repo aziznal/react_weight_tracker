@@ -7,26 +7,9 @@ const DateDisplay = ({ date, time }) => {
 
 
     return (
-        <div className="column">
-
-            <div className="row">
-                <h3 style={{ marginRight: "1em" }}>
-                    Date:
-            </h3>
-
-                <span>{date}</span>
-            </div>
-
-            <div className="row">
-                <h3 style={{ marginRight: "1em" }}>
-                    Time:
-            </h3>
-
-                <span>{time}</span>
-
-            </div>
-
-        </div>
+        <span className="row date-time-display">
+            at {date} - {time}
+        </span>
     )
 }
 

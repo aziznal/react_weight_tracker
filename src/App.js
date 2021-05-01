@@ -8,8 +8,7 @@ import Header from "./components/Header";
 import WeightForm from "./components/WeightForm";
 import MetricImperialSwitch from './components/WeightFormComponents/metricImperialSwitch';
 
-import WeightDisplay from './components/WeightDisplay';
-import DateDisplay from './components/DateDisplay';
+import SummarySection from './components/SummarySection';
 
 import BackendService from './BackendService';
 
@@ -22,8 +21,11 @@ const App = () => {
   const [measureDate, setMeasureDate] = useState();
   const [measureTime, setMeasureTime] = useState();
 
+  const onSubmit = async (entry) => {
+    await BackendService.addEntry(entry);
+  }
 
-
+  
   return (
     <div className="container body-wrapper">
 
@@ -50,21 +52,14 @@ const App = () => {
       <div className="separator"></div>
 
 
-      {/* ### */}
-      <WeightDisplay
+      < SummarySection
+      
         currentUnit={currentUnit}
         weight={weight}
-        measureDate={measureDate}
-        measureTime={measureTime}
-      />
-
-
-      {/* ### */}
-      <DateDisplay
-
         date={measureDate}
         time={measureTime}
-
+        onEntrySubmit={onSubmit}
+      
       />
 
     </div>

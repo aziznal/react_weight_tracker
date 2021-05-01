@@ -3,19 +3,21 @@
     {
       "id": 1,
       "weight": 87.5,
+      "unit": "KG",
       "date": "2020-04-28",
-      "time": "16:35",
-      "updatedField": 86.5
+      "time": "16:35"
     },
     {
       "id": 2,
       "weight": 88.5,
+      "unit": "KG",
       "date": "2020-04-29",
       "time": "17:00"
     },
     {
       "id": 3,
       "weight": 88,
+      "unit": "KG",
       "date": "2020-04-30",
       "time": "16:21"
     }

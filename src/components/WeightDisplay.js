@@ -3,11 +3,9 @@ import { PropTypes } from 'prop-types';
 
 const WeightDisplay = ({ currentUnit, weight }) => {
     return (
-        <div className="weight-display">
-            <span>
-                You weigh {weight} {currentUnit}(s)
-            </span>
-        </div>
+        <span className="row weight-display">
+            You weighed {weight} {currentUnit}(s)
+        </span>
     )
 }
 
