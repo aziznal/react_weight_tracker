@@ -65,9 +65,12 @@ class BackendService {
 
         let originalWeight = await this.fetchEntry(entryId);
 
-        originalWeight = { ...originalWeight, updatedField: updatedVal };
 
+        let updatedWeight = originalWeight;
 
+        updatedWeight[updatedField] = updatedVal
+
+        
         await fetch(
             this.LOCAL_HOST + `weights/${entryId}`,
             {
@@ -77,7 +80,7 @@ class BackendService {
                     'Content-type': 'application/json'
                 },
 
-                body: JSON.stringify(originalWeight)
+                body: JSON.stringify(updatedWeight)
             }
         );
 
