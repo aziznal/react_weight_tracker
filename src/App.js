@@ -11,7 +11,6 @@ import MetricImperialSwitch from './components/WeightFormComponents/metricImperi
 import WeightDisplay from './components/WeightDisplay';
 import DateDisplay from './components/DateDisplay';
 
-import './BackendService';
 import BackendService from './BackendService';
 
 
@@ -22,18 +21,6 @@ const App = () => {
 
   const [measureDate, setMeasureDate] = useState();
   const [measureTime, setMeasureTime] = useState();
-
-
-  
-  
-  // ### For testing API calls
-  (async function(){
-
-    let res = await BackendService.fetchEntry(1);
-    console.log(res);
-
-  })();
-
 
 
 

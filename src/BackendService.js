@@ -12,7 +12,6 @@ class BackendService {
     }
 
 
-
     addEntry = async (entry) => {
 
         // Get all current entries, then add another entry to them and send 'em back.
