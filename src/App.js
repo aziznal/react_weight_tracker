@@ -9,6 +9,10 @@ import WeightForm from "./components/WeightForm";
 import MetricImperialSwitch from './components/WeightFormComponents/metricImperialSwitch';
 
 import WeightDisplay from './components/WeightDisplay';
+import DateDisplay from './components/DateDisplay';
+
+import { fetchAllWeights, fetchWeight, updateWeight } from './BackendService';
+
 
 const App = () => {
 
@@ -18,15 +22,45 @@ const App = () => {
   const [measureDate, setMeasureDate] = useState();
   const [measureTime, setMeasureTime] = useState();
 
+
+  
+  
+  // ### For testing API calls
+  (async function(){
+
+    // let res = await fetchAllWeights();
+    // console.log(res);
+
+
+    // let res = await updateWeight(1);
+    // console.log(res);
+
+    try {
+      
+      let res = await fetchWeight(0);
+      console.log(res);
+
+    } catch (error) {
+      console.log("Could'nt't");
+    }
+
+  })();
+
+
+
+
   return (
     <div className="container body-wrapper">
 
+      {/* ### */}
       <Header />
 
+      {/* ### */}
       <MetricImperialSwitch updateUnit={(newUnit) => setUnit(newUnit)} />
 
       <div className="separator"></div>
 
+      {/* ### */}
       <WeightForm
 
         updateWeight={setWeight}
@@ -40,31 +74,23 @@ const App = () => {
 
       <div className="separator"></div>
 
-      <WeightDisplay currentUnit={currentUnit} weight={weight} />
+
+      {/* ### */}
+      <WeightDisplay
+        currentUnit={currentUnit}
+        weight={weight}
+        measureDate={measureDate}
+        measureTime={measureTime}
+      />
 
 
-      <div className="column">
+      {/* ### */}
+      <DateDisplay
 
-        <div className="row">
-          <h3 style={{ marginRight: "1em" }}>
-            Date:
-          </h3>
+        date={measureDate}
+        time={measureTime}
 
-          <span>{measureDate}</span>
-        </div>
-
-        <div className="row">
-          <h3 style={{ marginRight: "1em" }}>
-            Time:
-          </h3>
-
-          <span>{measureTime}</span>
-
-        </div>
-
-      </div>
-
-
+      />
 
     </div>
 
