@@ -110,20 +110,52 @@ html {
 // ### Main Container Styles ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ###
 
 .body-wrapper {
+
+  display: grid;
+
+  grid-template-columns: 2fr 1fr;
+
+  row-gap: 1em;
+  column-gap: 1em;
+
+  // justify-content: center;
+  // align-items: center;
+
+  margin: 2em;
+
+}
+
+
+
+.homepage-container {
+
   background-color: $primary;
-  
+
   padding: 3em 2em;
-
-  width: 450px;
-
-  margin-inline: auto;
-  margin-block: 1em;
 
   border-radius: 5px;
 
   outline: 5px solid $dark;
+
 }
 
+
+
+// ### Main Container Styles ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ###
+.weight-add-menu {
+
+  box-sizing: border-box;
+
+  padding: 1em;
+
+  background-color: #cccccc;
+
+  border-radius: 6px;
+  border: 5px solid #16459c;
+
+  // border-left-width: 0;
+
+}
 
 
 
