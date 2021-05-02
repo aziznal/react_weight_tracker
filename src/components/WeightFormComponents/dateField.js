@@ -50,7 +50,7 @@ const DateField = ({ updateDate, updateTime }) => {
 
   return (
 
-    <div className="container column">
+    <div className="column">
 
       <ManualDateInput
 

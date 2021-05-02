@@ -1,13 +1,27 @@
-import { PropTypes } from 'prop-types';
 
-
-const WeightField = ({ currentUnit, updateUnit, updateWeight }) => {
+const WeightField = ({ currentUnit, weight, updateWeight }) => {
 
   const minWeight = 0;
   const maxWeight = 500;
 
 
-  function clamp(num, min, max) {
+  const convertKGtoLBS =  (n) => {
+    return n * 2.204;
+  }
+
+  
+  const getMinMaxWeightBasedOnUnit = () => {
+
+    if (currentUnit === 'KG') {
+      return { min: minWeight, max: maxWeight };
+    } else {
+      return { min: convertKGtoLBS(minWeight), max: convertKGtoLBS(maxWeight) };
+    }
+
+  }
+
+
+  const clamp = (num, min, max) => {
     return Math.min(Math.max(num, min), max);
   }
 
@@ -27,8 +41,10 @@ const WeightField = ({ currentUnit, updateUnit, updateWeight }) => {
     else {
 
       parsedValue = parseFloat(parsedValue);
+      
+      let {min, max} = getMinMaxWeightBasedOnUnit();
 
-      parsedValue = clamp(parsedValue, minWeight, maxWeight);
+      parsedValue = clamp(parsedValue, min, max);
 
       return parsedValue;
     }
@@ -59,8 +75,10 @@ const WeightField = ({ currentUnit, updateUnit, updateWeight }) => {
           type="number"
           step="any"
 
-          min={minWeight}
-          max={maxWeight}
+          defaultValue={weight}
+          
+          min={getMinMaxWeightBasedOnUnit().min}
+          max={getMinMaxWeightBasedOnUnit().max}
 
           id="weight-field"
           name="weight-field"
@@ -71,14 +89,6 @@ const WeightField = ({ currentUnit, updateUnit, updateWeight }) => {
     </div>
 
   )
-}
-
-WeightField.propTypes = {
-
-  currentUnit: PropTypes.string.isRequired,
-  updateUnit: PropTypes.func.isRequired,
-  updateWeight: PropTypes.func.isRequired
-
 }
 
 export default WeightField

@@ -32,7 +32,7 @@ html {
 
   width: 100%;
 
-  margin-block: 1em;
+  // margin-block: 1em;
 }
 
 .btn {
@@ -111,18 +111,17 @@ html {
 
 .body-wrapper {
   background-color: $primary;
-  // color: white;
-
+  
   padding: 3em 2em;
 
   width: 450px;
 
   margin-inline: auto;
-  margin-block: 10em;
+  margin-block: 1em;
 
   border-radius: 5px;
 
-  outline: 10px solid $dark;
+  outline: 5px solid $dark;
 }
 
 
@@ -190,13 +189,37 @@ label {
 
 .date-time-display {
 
-  margin-block-start: .3em;
   margin-block-end: 1em;
 
   font-size: 1.425em;
 
   div, h3, span {
     margin-block-start: 0.3em;
+  }
+
+}
+
+
+
+Link, a {
+
+  color: black;
+  text-decoration: none;
+
+  transition: 150ms transform ease;
+
+  &:hover, &:active, &:visited {
+    color: rgb(0, 28, 119);
+    text-decoration: none;
+  }
+
+  &:hover {
+    transform: scale(1.1, 1.1);
+    color: blue;
+  }
+
+  &:active {
+    color: darkblue;
   }
 
 }

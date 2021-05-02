@@ -7,8 +7,6 @@ const ManualDateInput = ({ updateDate, updateTime, dateFieldVal, timeFieldVal })
 
     <div className="column">
 
-      <h2>Measurement Time and Date</h2>
-
       <div className="row">
         <label htmlFor="date">Date</label>
         

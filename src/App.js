@@ -1,19 +1,18 @@
-import { useState } from 'react';
+import { BrowserRouter as Router, Route } from 'react-router-dom'
+
+import  {useState} from 'react';
 
 import './StyleNormalize.css'
 import './App.scss';
 
+import HomePage from './components/HomePage';
+import AboutPage from './components/AboutPage';
 
 import Header from "./components/Header";
-import WeightForm from "./components/WeightForm";
-import MetricImperialSwitch from './components/WeightFormComponents/metricImperialSwitch';
-
-import SummarySection from './components/SummarySection';
-
-import BackendService from './BackendService';
 
 
 const App = () => {
+
 
   const [currentUnit, setUnit] = useState("KG");
   const [weight, setWeight] = useState(0);
@@ -21,48 +20,30 @@ const App = () => {
   const [measureDate, setMeasureDate] = useState();
   const [measureTime, setMeasureTime] = useState();
 
-  const onSubmit = async (entry) => {
-    await BackendService.addEntry(entry);
-  }
-
-  
   return (
-    <div className="container body-wrapper">
+
+    <Router>
 
       {/* ### */}
       <Header />
 
-      {/* ### */}
-      <MetricImperialSwitch updateUnit={(newUnit) => setUnit(newUnit)} />
+      <Route path='/' exact render={() => (
+        
+        <HomePage
+          weight={weight}
+          setWeight={setWeight}
+          currentUnit={currentUnit}
+          setUnit={setUnit}
+          measureDate={measureDate}
+          setMeasureDate={setMeasureDate}
+          measureTime={measureTime}
+          setMeasureTime={setMeasureTime}
+        />
+        )}/>
 
-      <div className="separator"></div>
+      <Route path='/about' exact component={AboutPage} />
 
-      {/* ### */}
-      <WeightForm
-
-        updateWeight={setWeight}
-        updateUnit={setUnit}
-        currentUnit={currentUnit}
-
-        updateDate={setMeasureDate}
-        updateTime={setMeasureTime}
-
-      />
-
-      <div className="separator"></div>
-
-
-      < SummarySection
-      
-        currentUnit={currentUnit}
-        weight={weight}
-        date={measureDate}
-        time={measureTime}
-        onEntrySubmit={onSubmit}
-      
-      />
-
-    </div>
+    </Router>
 
   )
 }
