@@ -12,35 +12,24 @@ function getTimeRightNow() {
 
 const AutoDateInput = ({ updateDate, updateTime }) => {
 
+  const setTimeAndDate = () => {
+
+    updateDate(getDateOfToday());
+    updateTime(getTimeRightNow());
+
+  }
+
 
   return (
     <div className="row">
 
       <h3 style={{marginRight: "1.5em"}}>Shortcuts</h3>
 
-      <button 
-        
-        className="btn"
 
-        onClick={() => updateDate(getDateOfToday)}
-
-      >
-
-          Today
+      <button className="btn" onClick={setTimeAndDate}>
+        Right Now
       </button>
 
-      <span>Or</span>
-
-      <button 
-        
-        className="btn"
-
-        onClick={() => updateTime(getTimeRightNow())}
-
-      >
-        Now
-      
-      </button>
 
     </div>
   )

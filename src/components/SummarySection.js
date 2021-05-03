@@ -19,11 +19,32 @@ const SummarySection = ({ weight, currentUnit, date, time, onEntrySubmit }) => {
 
     }
 
+
+    const checkEntryIsValid = (entry) => {
+
+        let validity = (
+            entry.weight !== 0 &&
+            entry.date !== undefined &&
+            entry.time !== undefined
+        );
+
+        return validity;
+
+    }
+
+
     const onEntrySubmitWrapper = async () => {
 
         let entry = constructEntry();
 
-        await onEntrySubmit(entry);
+        if ( checkEntryIsValid(entry) ) {
+
+            await onEntrySubmit(entry);
+
+        } else {
+            alert("Must fill all fields with proper values before submitting, dweeb.")
+        }
+
 
     }
 

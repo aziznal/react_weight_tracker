@@ -1,12 +1,10 @@
 import { Link } from 'react-router-dom';
-import {useState} from 'react';
+import { useState } from 'react';
 
 import BackendService from '../BackendService';
 
-import WeightForm from "./WeightForm";
-import MetricImperialSwitch from './WeightFormComponents/metricImperialSwitch';
-
-import SummarySection from './SummarySection';
+import AddWeight from './AddWeight';
+import Header from './Header';
 
 const HomePage = ({ weight, setWeight, currentUnit, setUnit, measureDate, setMeasureDate, measureTime, setMeasureTime }) => {
 
@@ -19,11 +17,12 @@ const HomePage = ({ weight, setWeight, currentUnit, setUnit, measureDate, setMea
     return (
         <div className="body-wrapper">
 
-
             <div className="homepage-container" >
 
-                <button onClick={ () => setShowAddWeight(!showAddWeight) }>
-                    Me Cliquez!
+                <Header />
+
+                <button className="btn add-weight-toggle-button" onClick={() => setShowAddWeight(!showAddWeight)}>
+                    Add Entry
                 </button>
 
                 <div className="separator"></div>
@@ -35,42 +34,26 @@ const HomePage = ({ weight, setWeight, currentUnit, setUnit, measureDate, setMea
 
             </div>
 
-            {
-                showAddWeight &&
-                <div className="column weight-add-menu slide-from-left">
-                    {/* ### */}
-                    <MetricImperialSwitch currentUnit={currentUnit} updateUnit={(newUnit) => setUnit(newUnit)} />
 
-                    <div className="separator"></div>
+            < AddWeight
 
-                    {/* ### */}
-                    <WeightForm
+                showAddWeight={showAddWeight}
 
-                        weight={weight}
-                        updateWeight={setWeight}
-                        updateUnit={setUnit}
-                        currentUnit={currentUnit}
+                weight={weight}
+                setWeight={setWeight}
 
-                        updateDate={setMeasureDate}
-                        updateTime={setMeasureTime}
+                currentUnit={currentUnit}
+                setUnit={setUnit}
 
-                    />
+                measureDate={measureDate}
+                setMeasureDate={setMeasureDate}
 
-                    <div className="separator"></div>
+                measureTime={measureTime}
+                setMeasureTime={setMeasureTime}
 
+                onSubmit={onSubmit}
+            />
 
-                    < SummarySection
-
-                        currentUnit={currentUnit}
-                        weight={weight}
-                        date={measureDate}
-                        time={measureTime}
-                        onEntrySubmit={onSubmit}
-
-                    />
-                </div>
-
-            }
 
         </div>
     )

@@ -113,15 +113,15 @@ html {
 
   display: grid;
 
-  grid-template-columns: 2fr 1fr;
+  grid-template-columns: 3fr 2fr;
 
-  row-gap: 1em;
-  column-gap: 1em;
+  width: 75vw;
 
-  // justify-content: center;
-  // align-items: center;
+  margin-block-start: 6em;
+  margin-inline: auto;
 
-  margin: 2em;
+  justify-content: center;
+
 
 }
 
@@ -131,11 +131,19 @@ html {
 
   background-color: $primary;
 
+  box-sizing: border-box;
+
   padding: 3em 2em;
 
   border-radius: 5px;
 
   outline: 5px solid $dark;
+
+  // height: 600px;
+  height: 100%;
+  width: 100%;
+
+  z-index: 3;
 
 }
 
@@ -144,19 +152,46 @@ html {
 // ### Main Container Styles ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ###
 .weight-add-menu {
 
+  width: 100%;
+
   box-sizing: border-box;
 
   padding: 1em;
 
-  background-color: #cccccc;
+  background-color: #dbdbdb;
 
   border-radius: 6px;
   border: 5px solid #16459c;
 
   // border-left-width: 0;
+  
+  transform-origin: left;
+  transform: translateX(-500px);
+
+  transition: 500ms transform ease-out;
+
+  z-index: 2;
 
 }
 
+
+.slide-from-left {
+
+  transition: 500ms transform ease-out;
+
+  transform: translateX(0px);
+
+  
+}
+
+
+.add-weight-toggle-button {
+  
+  margin-left: auto;
+
+  margin-block: 1em;
+
+}
 
 
 // ### Misc Styles ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ###

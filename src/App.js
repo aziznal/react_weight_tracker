@@ -8,8 +8,6 @@ import './App.scss';
 import HomePage from './components/HomePage';
 import AboutPage from './components/AboutPage';
 
-import Header from "./components/Header";
-
 
 const App = () => {
 
@@ -23,9 +21,6 @@ const App = () => {
   return (
 
     <Router>
-
-      {/* ### */}
-      <Header />
 
       <Route path='/' exact render={() => (
         
