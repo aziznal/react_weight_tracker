@@ -42,7 +42,7 @@ const SummarySection = ({ weight, currentUnit, date, time, onEntrySubmit }) => {
             await onEntrySubmit(entry);
 
         } else {
-            alert("Must fill all fields with proper values before submitting, dweeb.")
+            alert("Must fill all fields with proper values before submitting.")
         }
 
 
