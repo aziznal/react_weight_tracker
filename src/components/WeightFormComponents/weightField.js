@@ -75,7 +75,7 @@ const WeightField = ({ currentUnit, weight, updateWeight }) => {
           type="number"
           step="any"
 
-          defaultValue={weight}
+          value={weight}
           
           min={getMinMaxWeightBasedOnUnit().min}
           max={getMinMaxWeightBasedOnUnit().max}

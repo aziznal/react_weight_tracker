@@ -18,6 +18,20 @@ const App = () => {
   const [measureDate, setMeasureDate] = useState();
   const [measureTime, setMeasureTime] = useState();
 
+
+  const setUnitWrapper = (newUnit) => {
+
+    // When unit is changed, current weight entered will be converted to relevant unit.
+    setUnit(newUnit);
+
+    let newWeight = Math.round((currentUnit === 'KG' ? weight * 2.204 : weight / 2.204) * 100) / 100;
+    
+    setWeight(newWeight);
+
+
+  }
+
+
   return (
 
     <Router>
@@ -25,12 +39,16 @@ const App = () => {
       <Route path='/' exact render={() => (
         
         <HomePage
+
           weight={weight}
           setWeight={setWeight}
+
           currentUnit={currentUnit}
-          setUnit={setUnit}
+          setUnit={setUnitWrapper}
+
           measureDate={measureDate}
           setMeasureDate={setMeasureDate}
+
           measureTime={measureTime}
           setMeasureTime={setMeasureTime}
         />
