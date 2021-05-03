@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 const AboutPage = () => {
 
     return (
-        <div className="column">
+        <div className="column about-page-container">
             <h2>
                 Made by Abdulaziz Nal <a href="https://github.com/aziznal" target='blank'>@aziznal</a> as practice for react!
             </h2>
@@ -13,7 +13,7 @@ const AboutPage = () => {
             </span>
 
             <div className="row">
-                <Link to='/'>Home</Link>
+                <Link className="btn" to='/' style={{color: "white"}} >Home</Link>
             </div>
 
         </div>

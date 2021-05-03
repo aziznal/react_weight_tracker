@@ -115,7 +115,7 @@ html {
 
   grid-template-columns: 3fr 2fr;
 
-  width: 75vw;
+  width: 1000px;
 
   margin-block-start: 6em;
   margin-inline: auto;
@@ -144,6 +144,19 @@ html {
   width: 100%;
 
   z-index: 3;
+
+}
+
+
+.about-page-container {
+
+  height: 100vh;
+
+  padding: 0;
+  margin: 0;
+
+  align-items: center;
+  justify-content: center;
 
 }
 
