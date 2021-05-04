@@ -1,9 +1,9 @@
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
 
-import BackendService from '../BackendService';
+import BackendService from '../../../Services/BackendService';
 
-import AddWeight from './AddWeight';
+import AddWeight from '../../AddWeight/AddWeight';
 import Header from './Header';
 
 const HomePage = ({ weight, setWeight, currentUnit, setUnit, measureDate, setMeasureDate, measureTime, setMeasureTime }) => {
@@ -53,7 +53,6 @@ const HomePage = ({ weight, setWeight, currentUnit, setUnit, measureDate, setMea
 
                 onSubmit={onSubmit}
             />
-
 
         </div>
     )

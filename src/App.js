@@ -5,8 +5,8 @@ import  {useState} from 'react';
 import './StyleNormalize.css'
 import './App.scss';
 
-import HomePage from './components/HomePage';
-import AboutPage from './components/AboutPage';
+import HomePage from './components/Pages/HomePage/HomePage';
+import AboutPage from './components/Pages/AboutPage';
 
 
 const App = () => {
