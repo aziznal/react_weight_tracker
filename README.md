@@ -3,9 +3,7 @@
 
 I made this app in order to get some practice using ***React***
 
-The code is messy, the project structure is all over the place, and I'm inconsistent in many sections of my program.
-
-Nevertheless, I have learned quite a bit on the very basics of React, including hooks, routing, `useState`, and `useEffect`.
+By creating this app, I learned the very basics of React, including hooks, routing, `useState`, and `useEffect`.
 
 ---
 ## Note

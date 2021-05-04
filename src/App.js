@@ -1,64 +1,65 @@
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 
-import  {useState} from 'react';
+import { useState } from 'react';
 
 import './StyleNormalize.css'
 import './App.scss';
 
-import HomePage from './components/Pages/HomePage/HomePage';
-import AboutPage from './components/Pages/AboutPage';
+import { getDateOfToday, getTimeRightNow } from './utils/date-utils';
+
+import HomePage from './components/pages/HomePage/HomePage';
+import AboutPage from './components/pages/AboutPage';
 
 
 const App = () => {
 
 
-  const [currentUnit, setUnit] = useState("KG");
-  const [weight, setWeight] = useState(0);
+	const [weight, setWeight] = useState(0);
+	const [weightUnit, setWeightUnit] = useState("KG");
 
-  const [measureDate, setMeasureDate] = useState();
-  const [measureTime, setMeasureTime] = useState();
-
-
-  const setUnitWrapper = (newUnit) => {
-
-    // When unit is changed, current weight entered will be converted to relevant unit.
-    setUnit(newUnit);
-
-    let newWeight = Math.round((currentUnit === 'KG' ? weight * 2.204 : weight / 2.204) * 100) / 100;
-    
-    setWeight(newWeight);
+	const [date, setDate] = useState(getDateOfToday());
+	const [time, setTime] = useState(getTimeRightNow());
 
 
-  }
+	const setWeightUnitWrapper = (newUnit) => {
+
+		// When unit is changed, current weight entered will be converted to relevant unit.
+		setWeightUnit(newUnit);
+
+		let newWeight = Math.round((weightUnit === 'KG' ? weight * 2.204 : weight / 2.204) * 100) / 100;
+
+		setWeight(newWeight);
+
+	}
 
 
-  return (
+	return (
 
-    <Router>
+		<Router>
 
-      <Route path='/' exact render={() => (
-        
-        <HomePage
+			<Route path='/' exact render={() => (
 
-          weight={weight}
-          setWeight={setWeight}
+				<HomePage
 
-          currentUnit={currentUnit}
-          setUnit={setUnitWrapper}
+					weight={weight}
+					setWeight={setWeight}
 
-          measureDate={measureDate}
-          setMeasureDate={setMeasureDate}
+					weightUnit={weightUnit}
+					setWeightUnit={setWeightUnitWrapper}
 
-          measureTime={measureTime}
-          setMeasureTime={setMeasureTime}
-        />
-        )}/>
+					date={date}
+					setDate={setDate}
 
-      <Route path='/about' exact component={AboutPage} />
+					time={time}
+					setTime={setTime}
+				/>
+			)} />
 
-    </Router>
+			<Route path='/about' exact component={AboutPage} />
 
-  )
+		</Router>
+
+	)
 }
 
 export default App

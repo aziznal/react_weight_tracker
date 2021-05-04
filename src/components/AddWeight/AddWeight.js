@@ -1,48 +1,74 @@
-import React from 'react'
+import PropTypes from 'prop-types';
 
 
-import WeightForm from "./WeightForm";
-import MetricImperialSwitch from './WeightFormComponents/metricImperialSwitch';
+import WeightForm from "./WeightForm/WeightForm";
+import MetricImperialSwitch from './MetricImperialSwitch';
 
 import SummarySection from './SummarySection';
 
-const AddWeight = ({ weight, setWeight, currentUnit, setUnit, measureDate, setMeasureDate, measureTime, setMeasureTime, onSubmit, showAddWeight}) => {
-    return (
-        <div className={"column weight-add-menu" + (showAddWeight === true ? " slide-from-left" : "") }>
+const AddWeight = ({ weight, setWeight, weightUnit, setWeightUnit, date, setDate, time, setTime, onSubmitEntry, showAddWeightMenu }) => {
+	return (
+		<div className={"column weight-add-menu" + (showAddWeightMenu ? " slide-from-left" : "")}>
 
-            <MetricImperialSwitch
-                currentUnit={currentUnit}
-                updateUnit={(newUnit) => setUnit(newUnit)}
-            />
+			<MetricImperialSwitch
+				weightUnit={weightUnit}
+				updateWeightUnit={(newUnit) => setWeightUnit(newUnit)}
+			/>
 
-            <div className="separator"></div>
+			<div className="separator"></div>
 
-            <WeightForm
+			<WeightForm
 
-                weight={weight}
-                updateWeight={setWeight}
-                updateUnit={setUnit}
-                currentUnit={currentUnit}
+				weight={weight}
+				updateWeight={setWeight}
 
-                updateDate={setMeasureDate}
-                updateTime={setMeasureTime}
+				updateWeightUnit={setWeightUnit}
+				weightUnit={weightUnit}
 
-            />
+				updateDate={setDate}
 
-            <div className="separator"></div>
+				updateTime={setTime}
+
+			/>
+
+			<div className="separator"></div>
 
 
-            < SummarySection
+			< SummarySection
 
-                currentUnit={currentUnit}
-                weight={weight}
-                date={measureDate}
-                time={measureTime}
-                onEntrySubmit={onSubmit}
+				weight={weight}
 
-            />
-        </div>
-    )
+				weightUnit={weightUnit}
+
+				date={date}
+
+				time={time}
+
+				onSubmitEntry={onSubmitEntry}
+
+			/>
+		</div>
+	)
+}
+
+AddWeight.propTypes = {
+
+	weight: PropTypes.number.isRequired,
+	setWeight: PropTypes.func.isRequired,
+
+	weightUnit: PropTypes.string.isRequired,
+	setWeightUnit: PropTypes.func.isRequired,
+
+	date: PropTypes.string.isRequired,
+	setDate: PropTypes.func.isRequired,
+
+	time: PropTypes.string.isRequired,
+	setTime: PropTypes.func.isRequired,
+
+	onSubmitEntry: PropTypes.func.isRequired,
+
+	showAddWeightMenu: PropTypes.bool.isRequired
+
 }
 
 export default AddWeight

@@ -1,72 +1,84 @@
 
-import WeightDisplay from './WeightDisplay';
-import DateDisplay from './DateDisplay';
-import SubmitWeight from './SubmitWeight';
+import PropTypes from 'prop-types';
 
 
-const SummarySection = ({ weight, currentUnit, date, time, onEntrySubmit }) => {
+const SummarySection = ({ weight, weightUnit, date, time, onSubmitEntry }) => {
 
-    const constructEntry = () => {
+	const constructEntry = () => {
 
-        let newEntry = {
-            "weight": weight,
-            "unit": currentUnit,
-            "date": date,
-            "time": time
-        }
+		let newEntry = {
+			"weight": weight,
+			"unit": weightUnit,
+			"date": date,
+			"time": time
+		}
 
-        return newEntry;
+		return newEntry;
 
-    }
-
-
-    const checkEntryIsValid = (entry) => {
-
-        let validity = (
-            entry.weight !== 0 &&
-            entry.date !== undefined &&
-            entry.time !== undefined
-        );
-
-        return validity;
-
-    }
+	}
 
 
-    const onEntrySubmitWrapper = async () => {
+	const checkEntryIsValid = (entry) => {
 
-        let entry = constructEntry();
+		let isValid = (
+			entry.weight !== 0 &&
+			entry.date !== undefined &&
+			entry.time !== undefined
+		);
 
-        if ( checkEntryIsValid(entry) ) {
+		return isValid;
 
-            await onEntrySubmit(entry);
-
-        } else {
-            alert("Did you choose Weight, Date, and Time?");
-        }
+	}
 
 
-    }
+	const onSubmitEntryWrapper = async () => {
 
-    return (
-        <div>
+		let entry = constructEntry();
 
-            <WeightDisplay
-                currentUnit={currentUnit}
-                weight={weight}
-            />
+		if (checkEntryIsValid(entry)) {
 
-            <DateDisplay
-                date={date}
-                time={time}
-            />
+			await onSubmitEntry(entry);
 
-            <SubmitWeight
-                onEntrySubmit={onEntrySubmitWrapper}
-            />
+		} else {
+			alert("Did you choose Weight (> 0), Date, and Time?");
+		}
 
-        </div>
-    )
+
+	}
+
+	return (
+		<div>
+
+			<span className="row weight-display">
+				You weighed {weight} {weightUnit}
+			</span>
+
+
+			<span className="row date-time-display">
+				at {date} - {time}
+			</span>
+
+
+			<button className="row btn" onClick={onSubmitEntryWrapper}>
+				Submit Entry
+            </button>
+
+		</div>
+	)
+}
+
+SummarySection.propTypes = {
+
+	weight: PropTypes.number,
+
+	weightUnit: PropTypes.string,
+
+	date: PropTypes.string.isRequired,
+
+	time: PropTypes.string.isRequired,
+
+	onSubmitEntry: PropTypes.func.isRequired
+
 }
 
 export default SummarySection
