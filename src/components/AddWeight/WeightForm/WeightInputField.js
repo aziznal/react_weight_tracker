@@ -1,16 +1,12 @@
 import PropTypes from 'prop-types';
 
+import { convertKGtoLBS, convertLBStoKG } from '../../../utils/weight-utils';
+
 
 const WeightInputField = ({ weight, updateWeight, weightUnit }) => {
 
 	const minWeight = 0;
 	const maxWeight = 500;
-
-
-	const convertKGtoLBS = (n) => {
-		return n * 2.204;
-	}
-
 
 	const getMinMaxWeightBasedOnUnit = () => {
 

@@ -9,6 +9,7 @@ import { getDateOfToday, getTimeRightNow } from './utils/date-utils';
 
 import HomePage from './components/pages/HomePage/HomePage';
 import AboutPage from './components/pages/AboutPage';
+import { convertKGtoLBS, convertLBStoKG } from './utils/weight-utils';
 
 
 const App = () => {
@@ -26,7 +27,7 @@ const App = () => {
 		// When unit is changed, current weight entered will be converted to relevant unit.
 		setWeightUnit(newUnit);
 
-		let newWeight = Math.round((weightUnit === 'KG' ? weight * 2.204 : weight / 2.204) * 100) / 100;
+		let newWeight = Math.round((weightUnit === 'KG' ? convertKGtoLBS(weight) : convertLBStoKG(weight)) * 100) / 100;
 
 		setWeight(newWeight);
 
