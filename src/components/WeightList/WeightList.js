@@ -5,16 +5,17 @@ import './weight-list-styles.scss';
 
 
 
-const WeightList = ({ entries }) => {
+
+const WeightList = ({ entries, onDelete }) => {
 
 	const createEntriesList = () => {
-		
+
 		const formattedEntryList = [];
 
 		for (let entry of entries) {
 
 			formattedEntryList.push(
-				<Entry key={entry.id} data={entry} />
+				<Entry key={entry.id} data={entry} onDelete={onDelete}/>
 			)
 
 		}
@@ -25,7 +26,7 @@ const WeightList = ({ entries }) => {
 
 	return (
 		<div className="weight-list-container" id="entry-section">
-			
+
 			<ul>
 
 				{

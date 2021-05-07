@@ -1,7 +1,39 @@
 import WeightEntry from '../../../classes/WeightEntry';
 
 
-const Entry = ({ data }) => {
+
+const scrollEntrySectionToBottom = () => {
+
+	let entry_section = document.getElementById("entry-section");
+
+	entry_section.scrollBy(
+		{
+			top: entry_section.scrollHeight,
+			behavior: 'smooth'
+
+		}
+	);
+
+}
+
+
+const scrollEntrySectionToTop = () => {
+
+	let entry_section = document.getElementById("entry-section");
+
+	entry_section.scrollTo(
+		{
+			top: 0,
+			behavior: 'smooth'
+
+		}
+	);
+
+}
+
+
+const Entry = ({ data, onDelete }) => {
+
 
 	const createWeightEntry = () => {
 
@@ -27,8 +59,20 @@ const Entry = ({ data }) => {
 				#{weight_entry.id}
 			</span>
 
+			<span className="entry-del" onClick={ () => onDelete(weight_entry.id) }>
+				&times;
+			</span>
+
 		</div>
 	)
 }
 
 export default Entry
+
+export {
+
+	scrollEntrySectionToBottom,
+
+	scrollEntrySectionToTop
+
+}

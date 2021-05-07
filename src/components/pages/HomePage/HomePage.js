@@ -7,7 +7,8 @@ import BackendService from '../../../services/BackendService';
 
 import Header from './Header';
 import AddWeight from '../../AddWeight/AddWeight';
-import WeightList from '../../WeightList/WeightList'
+import WeightList from '../../WeightList/WeightList';
+import { scrollEntrySectionToBottom, scrollEntrySectionToTop } from '../../WeightList/Entry/Entry';
 
 const HomePage = ({ weight, setWeight, weightUnit, setWeightUnit, date, setDate, time, setTime }) => {
 
@@ -19,47 +20,41 @@ const HomePage = ({ weight, setWeight, weightUnit, setWeightUnit, date, setDate,
 	const getEntries = async () => {
 
 		const entries = await BackendService.fetchAllEntries();
-		
+
 		setEntries(entries);
 
 	}
 
 	const onSubmitEntry = async (entry) => {
 		await BackendService.addEntry(entry);
-		
+
 		await getEntries();
 
 		await scrollEntrySectionToBottom();
 
 	}
 
-	const scrollEntrySectionToBottom = () => {
+	const onDeleteEntry = async (id) => {
 
-		let entry_section = document.getElementById("entry-section");
+		await BackendService.deleteEntry(id);
 
-		entry_section.scrollBy(
-			{
-				top: entry_section.scrollHeight,
-				behavior: 'smooth'
-				
-			}
-		);
+		await getEntries();
 
-		console.log("scrolling..");
+		await scrollEntrySectionToBottom();
 
 	}
 
 	useEffect(() => {
 
 		const _ = async () => {
-			
+
 			await getEntries();
 
 		}
 
 		_();
 
-		
+
 	}, [])
 
 	return (
@@ -75,7 +70,25 @@ const HomePage = ({ weight, setWeight, weightUnit, setWeightUnit, date, setDate,
 
 				<div className="separator"></div>
 
-				<WeightList entries={entries}/>
+				<div>
+
+					<WeightList
+
+						entries={entries}
+
+						onDelete={onDeleteEntry}
+
+					/>
+
+					<button className="btn" onClick={scrollEntrySectionToTop}>
+						Top
+					</button>
+
+					<button className="btn" onClick={scrollEntrySectionToBottom}>
+						Bottom
+					</button>
+
+				</div>
 
 				<div className="row">
 					<Link to={'/about'}>About</Link>
