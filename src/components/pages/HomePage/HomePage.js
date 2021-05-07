@@ -1,20 +1,66 @@
 import { Link } from 'react-router-dom';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import PropTypes from 'prop-types';
 
 import BackendService from '../../../services/BackendService';
 
-import AddWeight from '../../AddWeight/AddWeight';
 import Header from './Header';
+import AddWeight from '../../AddWeight/AddWeight';
+import WeightList from '../../WeightList/WeightList'
 
 const HomePage = ({ weight, setWeight, weightUnit, setWeightUnit, date, setDate, time, setTime }) => {
 
-	let [showAddWeightMenu, setShowAddWeightMenu] = useState(false);
+	const [showAddWeightMenu, setShowAddWeightMenu] = useState(false);
+
+	const [entries, setEntries] = useState([]);
+
+
+	const getEntries = async () => {
+
+		const entries = await BackendService.fetchAllEntries();
+		
+		setEntries(entries);
+
+	}
 
 	const onSubmitEntry = async (entry) => {
 		await BackendService.addEntry(entry);
+		
+		await getEntries();
+
+		await scrollEntrySectionToBottom();
+
 	}
+
+	const scrollEntrySectionToBottom = () => {
+
+		let entry_section = document.getElementById("entry-section");
+
+		entry_section.scrollBy(
+			{
+				top: entry_section.scrollHeight,
+				behavior: 'smooth'
+				
+			}
+		);
+
+		console.log("scrolling..");
+
+	}
+
+	useEffect(() => {
+
+		const _ = async () => {
+			
+			await getEntries();
+
+		}
+
+		_();
+
+		
+	}, [])
 
 	return (
 		<div className="body-wrapper">
@@ -29,10 +75,13 @@ const HomePage = ({ weight, setWeight, weightUnit, setWeightUnit, date, setDate,
 
 				<div className="separator"></div>
 
+				<WeightList entries={entries}/>
+
 				<div className="row">
 					<Link to={'/about'}>About</Link>
 				</div>
 
+				<div className="separator"></div>
 
 			</div>
 

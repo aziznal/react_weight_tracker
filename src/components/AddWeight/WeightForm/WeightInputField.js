@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 
-import { convertKGtoLBS, convertLBStoKG } from '../../../utils/weight-utils';
+import { convertKGtoLBS } from '../../../utils/weight-utils';
 
 
 const WeightInputField = ({ weight, updateWeight, weightUnit }) => {

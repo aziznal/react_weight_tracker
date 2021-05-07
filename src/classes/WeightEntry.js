@@ -1,45 +1,21 @@
 
 class WeightEntry {
 
-	constructor( weight, weightUnit, date, time ) {
-		this.weight = weight;
-		this.weightUnit = weightUnit;
-		this.date = date;
-		this.time = time;
-	}
 
+	constructor(weight_entry_data) {
 
-	get weight() { return this.weight; }
-	
-	set weight(value) { this.weight = value; }
+		this.id = weight_entry_data.id;
 
+		this.weight = weight_entry_data.weight;
 
-	
-	get weightUnit() { return this.weightUnit; }
-	
-	set weightUnit(value) { 
+		this.unit = weight_entry_data.unit;
 
-		if (value !== "KG" || value !== "LBS") throw Error("Weight unit must be 'KG' or 'LBS'");
-		this.weightUnit = value;
+		this.date = weight_entry_data.date;
+
+		this.time = weight_entry_data.time;
 
 	}
-
-
-
-	get date() { return this.date; }
-	
-	set date(value) { this.date = value; }
-
-
-
-	get time() { return this.time; }
-	
-	set time(value) { this.time = value; }
-
-
-
-
 
 }
 
-export default WeightEntry
+export default WeightEntry;
