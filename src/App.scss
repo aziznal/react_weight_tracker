@@ -60,11 +60,11 @@ html {
 	transition: 150ms transform ease;
 
 	&:hover {
-		transform: translateY(-2px);
+		transform: scale(1.05, 1.05);
 	}
 
 	&:active {
-		transform: translateY(-1px);
+		transform: scale(1.02, 1.02);
 		background-color: #210b7c;
 	}
 }

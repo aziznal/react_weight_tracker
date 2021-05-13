@@ -8,13 +8,15 @@ import BackendService from '../../../services/BackendService';
 import Header from './Header';
 import AddWeight from '../../AddWeight/AddWeight';
 import WeightList from '../../WeightList/WeightList';
-import { scrollEntrySectionToBottom, scrollEntrySectionToTop } from '../../WeightList/Entry/Entry';
+import { scrollEntrySectionToBottom } from '../../WeightList/Entry/Entry';
 
 const HomePage = ({ weight, setWeight, weightUnit, setWeightUnit, date, setDate, time, setTime }) => {
 
 	const [showAddWeightMenu, setShowAddWeightMenu] = useState(false);
 
 	const [entries, setEntries] = useState([]);
+
+	const [askBeforeDelete, setAskBeforeDelete] = useState(true);
 
 
 	const getEntries = async () => {
@@ -70,23 +72,18 @@ const HomePage = ({ weight, setWeight, weightUnit, setWeightUnit, date, setDate,
 
 				<div className="separator"></div>
 
+
 				<div>
 
 					<WeightList
 
-						entries={entries}
+						askBeforeDelete={askBeforeDelete}
+						setAskBeforeDelete={setAskBeforeDelete}
 
+						entries={entries}
 						onDelete={onDeleteEntry}
 
 					/>
-
-					<button className="btn" onClick={scrollEntrySectionToTop}>
-						Top
-					</button>
-
-					<button className="btn" onClick={scrollEntrySectionToBottom}>
-						Bottom
-					</button>
 
 				</div>
 

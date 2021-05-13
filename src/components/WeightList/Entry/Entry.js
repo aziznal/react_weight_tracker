@@ -59,9 +59,9 @@ const Entry = ({ data, onDelete }) => {
 				#{weight_entry.id}
 			</span>
 
-			<span className="entry-del" onClick={ () => onDelete(weight_entry.id) }>
-				&times;
-			</span>
+			<button className="btn entry-del" onClick={ () => onDelete(weight_entry.id) }>
+				Delete
+			</button>
 
 		</div>
 	)
