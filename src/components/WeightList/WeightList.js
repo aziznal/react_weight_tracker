@@ -19,7 +19,7 @@ const WeightList = ({ entries, onDelete, askBeforeDelete, setAskBeforeDelete }) 
 		if (askBeforeDelete) {
 
 			confirmAlert({
-				customUI: ( {onClose} ) => {
+				customUI: ({ onClose }) => {
 					return (
 
 						<div className="confirm-delete-dialog">
@@ -29,13 +29,14 @@ const WeightList = ({ entries, onDelete, askBeforeDelete, setAskBeforeDelete }) 
 
 							<div className="row">
 
-								<button className="btn" onClick={ () => { onDelete(...args); onClose(); } }>
+								<button className="btn" onClick={onClose} style={{ backgroundColor: "red" }}>
+									Cancel
+								</button>
+
+								<button className="btn" onClick={() => { onDelete(...args); onClose(); }}>
 									Yes
 								</button>
 
-								<button className="btn" onClick={ onClose } style={{backgroundColor: "red"}}>
-									Cancel
-								</button>
 							</div>
 
 						</div>
