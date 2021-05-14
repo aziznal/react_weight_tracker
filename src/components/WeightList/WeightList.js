@@ -94,13 +94,13 @@ const WeightList = ({ entries, onDelete, askBeforeDelete, setAskBeforeDelete }) 
 
 			</div>
 
-			<button className="btn entry-list-scroll-to-top" onClick={scrollEntrySectionToTop}>
+			<span className="entry-list-scroll-to-top" onClick={scrollEntrySectionToTop}>
 				^
-			</button>
+			</span>
 
-			<button className="btn entry-list-scroll-to-bottom" onClick={scrollEntrySectionToBottom}>
+			<span className="entry-list-scroll-to-bottom" onClick={scrollEntrySectionToBottom}>
 				v
-			</button>
+			</span>
 
 		</div>
 	)

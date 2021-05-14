@@ -6,7 +6,7 @@
 
 		position: absolute;
 
-		right: -1.75em;
+		right: -.5em;
 		
 		display: flex;
 
@@ -15,27 +15,31 @@
 		align-items: center;
 		justify-content: center;
 
-
-		opacity: 0.3;
-
-		width: 25px;
+		width: 35px;
 		height: 25px;
 
 		margin: 0;
 		padding: 0;
 
-		transition: 250ms opacity ease;
+
+		background-color: none;
+
+		border: 1px solid black;
+		border-radius: 6px;
+
+		cursor: pointer;
+
+		transition: 150ms background-color ease;
 
 		&:hover {
-			opacity: 100%;
-			transform: none;	// To stop translate on hover from .btn class
+			background-color: #69b6ff;
 		}
 
 	}
 
 
 	.entry-list-scroll-to-bottom {
-		top: 4.1em;
+		bottom: 0;
 	}
 
 	.entry-list-scroll-to-top {
