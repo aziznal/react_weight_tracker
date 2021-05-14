@@ -124,6 +124,8 @@ const HomePage = ({ weight, setWeight, weightUnit, setWeightUnit, date, setDate,
 				showWeightGraphMenu={showWeightGraphMenu}
 				setShowWeightGraphMenu={setShowWeightGraphMenu}
 
+				currentWeightUnit={weightUnit}
+
 			/>
 
 		</div>
