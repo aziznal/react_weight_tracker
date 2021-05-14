@@ -6,9 +6,24 @@ import MetricImperialSwitch from './MetricImperialSwitch';
 
 import SummarySection from './SummarySection';
 
-const AddWeight = ({ weight, setWeight, weightUnit, setWeightUnit, date, setDate, time, setTime, onSubmitEntry, showAddWeightMenu }) => {
+
+// TODO: find a solution to the below train of parameters
+const AddWeight = ({ weight, setWeight, weightUnit, setWeightUnit, date, setDate, time, setTime, onSubmitEntry, showAddWeightMenu, setShowAddWeightMenu}) => {
+
+
+	const setDynamicClassName = () => {
+
+		return "column weight-add-menu" +
+			(showAddWeightMenu ? " slide-from-left" : " closed-menu");
+
+	}
+
 	return (
-		<div className={"column weight-add-menu" + (showAddWeightMenu ? " slide-from-left" : "")}>
+		<div className={setDynamicClassName()} onClick={ () => {!showAddWeightMenu && setShowAddWeightMenu(true)} }>
+			
+			<span className="close-menu-button" onClick={ () => {setShowAddWeightMenu(false)} }>
+				&times;
+			</span>
 
 			<MetricImperialSwitch
 				weightUnit={weightUnit}

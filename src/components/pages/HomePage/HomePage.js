@@ -9,10 +9,13 @@ import Header from './Header';
 import AddWeight from '../../AddWeight/AddWeight';
 import WeightList from '../../WeightList/WeightList';
 import { scrollEntrySectionToBottom } from '../../WeightList/Entry/Entry';
+import WeightGraph from '../../WeightGraph/WeightGraph';
 
 const HomePage = ({ weight, setWeight, weightUnit, setWeightUnit, date, setDate, time, setTime }) => {
 
 	const [showAddWeightMenu, setShowAddWeightMenu] = useState(false);
+
+	const [showWeightGraphMenu, setShowWeightGraphMenu] = useState(false);
 
 	const [entries, setEntries] = useState([]);
 
@@ -32,7 +35,7 @@ const HomePage = ({ weight, setWeight, weightUnit, setWeightUnit, date, setDate,
 
 		await getEntries();
 
-		await scrollEntrySectionToBottom();
+		scrollEntrySectionToBottom();
 
 	}
 
@@ -42,7 +45,7 @@ const HomePage = ({ weight, setWeight, weightUnit, setWeightUnit, date, setDate,
 
 		await getEntries();
 
-		await scrollEntrySectionToBottom();
+		scrollEntrySectionToBottom();
 
 	}
 
@@ -66,9 +69,6 @@ const HomePage = ({ weight, setWeight, weightUnit, setWeightUnit, date, setDate,
 
 				<Header />
 
-				<button className="btn add-weight-toggle-button" onClick={() => setShowAddWeightMenu(!showAddWeightMenu)}>
-					Add Entry
-                </button>
 
 				<div className="separator"></div>
 
@@ -113,6 +113,16 @@ const HomePage = ({ weight, setWeight, weightUnit, setWeightUnit, date, setDate,
 				onSubmitEntry={onSubmitEntry}
 
 				showAddWeightMenu={showAddWeightMenu}
+				setShowAddWeightMenu={setShowAddWeightMenu}
+
+			/>
+
+			<WeightGraph
+			
+				entries={entries}
+
+				showWeightGraphMenu={showWeightGraphMenu}
+				setShowWeightGraphMenu={setShowWeightGraphMenu}
 
 			/>
 
