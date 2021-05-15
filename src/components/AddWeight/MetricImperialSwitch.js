@@ -1,6 +1,13 @@
 import PropTypes from 'prop-types';
 
 
+const propTypes = {
+
+	weightUnit: PropTypes.string.isRequired,
+	updateWeightUnit: PropTypes.func.isRequired
+
+}
+
 const MetricImperialSwitch = ({ weightUnit, updateWeightUnit }) => {
 
 	return (
@@ -45,12 +52,7 @@ const MetricImperialSwitch = ({ weightUnit, updateWeightUnit }) => {
 }
 
 
-MetricImperialSwitch.propTypes = {
-
-	weightUnit: PropTypes.string.isRequired,
-	updateWeightUnit: PropTypes.func.isRequired
-
-}
+MetricImperialSwitch.propTypes = propTypes;
 
 
 export default MetricImperialSwitch

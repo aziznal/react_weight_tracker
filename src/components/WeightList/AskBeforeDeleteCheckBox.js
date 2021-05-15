@@ -1,6 +1,13 @@
 import PropTypes from 'prop-types';
 
 
+const propTypes = {
+
+	askBeforeDelete: PropTypes.bool.isRequired,
+	setAskBeforeDelete: PropTypes.func.isRequired
+
+}
+
 const AskBeforeDeleteCheckBox = ({ askBeforeDelete, setAskBeforeDelete }) => {
 
 	const toggleAskBeforeDelete = () => {
@@ -25,11 +32,6 @@ const AskBeforeDeleteCheckBox = ({ askBeforeDelete, setAskBeforeDelete }) => {
 }
 
 
-AskBeforeDeleteCheckBox.propTypes = {
-
-	askBeforeDelete: PropTypes.bool.isRequired,
-	setAskBeforeDelete: PropTypes.func.isRequired
-
-}
+AskBeforeDeleteCheckBox.propTypes = propTypes;
 
 export default AskBeforeDeleteCheckBox

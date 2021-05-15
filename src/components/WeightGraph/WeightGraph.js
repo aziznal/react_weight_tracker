@@ -4,6 +4,24 @@ import { Line } from 'react-chartjs-2';
 import { convertKGtoLBS, convertLBStoKG } from '../../utils/weight-utils';
 
 
+const propTypes = {
+
+	entries: PropTypes.array,
+
+	showWeightGraphMenu: PropTypes.bool.isRequired,
+	setShowWeightGraphMenu: PropTypes.func.isRequired
+
+};
+
+const defaultProps = {
+
+	entries: []
+
+}
+
+
+// FIXME: Graph is being reloaded every time 'something' happens anywhere in the app. FIX
+
 const WeightGraph = ({ entries, currentWeightUnit, showWeightGraphMenu, setShowWeightGraphMenu }) => {
 
 
@@ -93,14 +111,8 @@ const WeightGraph = ({ entries, currentWeightUnit, showWeightGraphMenu, setShowW
 }
 
 
-WeightGraph.propTypes = {
-
-	entries: PropTypes.array,
-
-	showWeightGraphMenu: PropTypes.bool.isRequired,
-	setShowWeightGraphMenu: PropTypes.func.isRequired
-
-}
+WeightGraph.propTypes = propTypes;
+WeightGraph.defaultProps = defaultProps;
 
 
 export default WeightGraph

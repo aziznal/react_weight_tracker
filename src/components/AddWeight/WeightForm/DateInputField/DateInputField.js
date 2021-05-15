@@ -5,6 +5,15 @@ import { getDateOfToday, getTimeRightNow } from '../../../../utils/date-utils';
 import ManualDateInput from './ManualDateInput';
 import AutoDateInput from './AutoDateInput';
 
+
+const propTypes = {
+
+	updateDate: PropTypes.func.isRequired,
+
+	updateTime: PropTypes.func.isRequired
+
+}
+
 const DateInputField = ({ updateDate, updateTime }) => {
 
 
@@ -75,12 +84,6 @@ const DateInputField = ({ updateDate, updateTime }) => {
 }
 
 
-DateInputField.propTypes = {
-
-	updateDate: PropTypes.func.isRequired,
-
-	updateTime: PropTypes.func.isRequired
-
-}
+DateInputField.propTypes = propTypes;
 
 export default DateInputField

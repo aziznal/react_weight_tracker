@@ -9,7 +9,16 @@ import 'react-confirm-alert/src/react-confirm-alert.css';
 import './weight-list-styles.scss';
 
 
+const propTypes = {
 
+	entries: PropTypes.array.isRequired,
+
+	onDelete: PropTypes.func.isRequired,
+
+	askBeforeDelete: PropTypes.bool.isRequired,
+	setAskBeforeDelete: PropTypes.func.isRequired
+
+};
 
 const WeightList = ({ entries, onDelete, askBeforeDelete, setAskBeforeDelete }) => {
 
@@ -107,15 +116,6 @@ const WeightList = ({ entries, onDelete, askBeforeDelete, setAskBeforeDelete }) 
 }
 
 
-WeightList.propTypes = {
-
-	entries: PropTypes.array.isRequired,
-
-	onDelete: PropTypes.func.isRequired,
-
-	askBeforeDelete: PropTypes.bool.isRequired,
-	setAskBeforeDelete: PropTypes.func.isRequired
-
-}
+WeightList.propTypes = propTypes;
 
 export default WeightList

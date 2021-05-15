@@ -1,6 +1,16 @@
 import PropTypes from 'prop-types';
 
 
+const propTypes = {
+
+	dateFieldVal: PropTypes.string.isRequired,
+	updateDate: PropTypes.func.isRequired,
+
+	timeFieldVal: PropTypes.string.isRequired,
+	updateTime: PropTypes.func.isRequired
+
+}
+
 const ManualDateInput = ({ updateDate, updateTime, dateFieldVal, timeFieldVal }) => {
 
 	return (
@@ -38,15 +48,7 @@ const ManualDateInput = ({ updateDate, updateTime, dateFieldVal, timeFieldVal })
 }
 
 
-ManualDateInput.propTypes = {
-
-	dateFieldVal: PropTypes.string.isRequired,
-	updateDate: PropTypes.func.isRequired,
-
-	timeFieldVal: PropTypes.string.isRequired,
-	updateTime: PropTypes.func.isRequired
-
-}
+ManualDateInput.propTypes = propTypes;
 
 
 export default ManualDateInput

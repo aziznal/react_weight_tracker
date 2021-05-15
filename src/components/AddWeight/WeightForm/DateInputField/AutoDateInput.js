@@ -4,6 +4,14 @@ import PropTypes from 'prop-types';
 import { getDateOfToday, getTimeRightNow } from '../../../../utils/date-utils';
 
 
+const propTypes = {
+
+	updateDate: PropTypes.func.isRequired,
+
+	updateTime: PropTypes.func.isRequired
+
+}
+
 const AutoDateInput = ({ updateDate, updateTime }) => {
 
 	const setTimeAndDate = () => {
@@ -28,12 +36,6 @@ const AutoDateInput = ({ updateDate, updateTime }) => {
 }
 
 
-AutoDateInput.propTypes = {
-
-	updateDate: PropTypes.func.isRequired,
-
-	updateTime: PropTypes.func.isRequired
-
-}
+AutoDateInput.propTypes = propTypes;
 
 export default AutoDateInput

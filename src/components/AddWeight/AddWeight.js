@@ -7,7 +7,29 @@ import MetricImperialSwitch from './MetricImperialSwitch';
 import SummarySection from './SummarySection';
 
 
-// TODO: find a solution to the below train of parameters
+const propTypes = {
+
+	weight: PropTypes.number.isRequired,
+	setWeight: PropTypes.func.isRequired,
+
+	weightUnit: PropTypes.string.isRequired,
+	setWeightUnit: PropTypes.func.isRequired,
+
+	date: PropTypes.string.isRequired,
+	setDate: PropTypes.func.isRequired,
+
+	time: PropTypes.string.isRequired,
+	setTime: PropTypes.func.isRequired,
+
+	onSubmitEntry: PropTypes.func.isRequired,
+
+	showAddWeightMenu: PropTypes.bool.isRequired
+
+};
+
+
+// TODO: find a solution to the below train of parameters (officially kinda ran into 'prop-drilling' here. Yay!)
+// REFACTOR: Use Component Composition to get rid of this
 const AddWeight = ({ weight, setWeight, weightUnit, setWeightUnit, date, setDate, time, setTime, onSubmitEntry, showAddWeightMenu, setShowAddWeightMenu}) => {
 
 
@@ -66,24 +88,6 @@ const AddWeight = ({ weight, setWeight, weightUnit, setWeightUnit, date, setDate
 	)
 }
 
-AddWeight.propTypes = {
-
-	weight: PropTypes.number.isRequired,
-	setWeight: PropTypes.func.isRequired,
-
-	weightUnit: PropTypes.string.isRequired,
-	setWeightUnit: PropTypes.func.isRequired,
-
-	date: PropTypes.string.isRequired,
-	setDate: PropTypes.func.isRequired,
-
-	time: PropTypes.string.isRequired,
-	setTime: PropTypes.func.isRequired,
-
-	onSubmitEntry: PropTypes.func.isRequired,
-
-	showAddWeightMenu: PropTypes.bool.isRequired
-
-}
+AddWeight.propTypes = propTypes;
 
 export default AddWeight

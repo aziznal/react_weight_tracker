@@ -11,6 +11,23 @@ import WeightList from '../../WeightList/WeightList';
 import { scrollEntrySectionToBottom } from '../../WeightList/Entry/Entry';
 import WeightGraph from '../../WeightGraph/WeightGraph';
 
+
+const propTypes = {
+
+	weight: PropTypes.number.isRequired,
+	setWeight: PropTypes.func.isRequired,
+
+	weightUnit: PropTypes.string.isRequired,
+	setWeightUnit: PropTypes.func.isRequired,
+
+	date: PropTypes.string.isRequired,
+	setDate: PropTypes.func.isRequired,
+
+	time: PropTypes.string.isRequired,
+	setTime: PropTypes.func.isRequired
+
+}
+
 const HomePage = ({ weight, setWeight, weightUnit, setWeightUnit, date, setDate, time, setTime }) => {
 
 	const [showAddWeightMenu, setShowAddWeightMenu] = useState(false);
@@ -132,21 +149,7 @@ const HomePage = ({ weight, setWeight, weightUnit, setWeightUnit, date, setDate,
 	)
 }
 
-HomePage.propTypes = {
-
-	weight: PropTypes.number.isRequired,
-	setWeight: PropTypes.func.isRequired,
-
-	weightUnit: PropTypes.string.isRequired,
-	setWeightUnit: PropTypes.func.isRequired,
-
-	date: PropTypes.string.isRequired,
-	setDate: PropTypes.func.isRequired,
-
-	time: PropTypes.string.isRequired,
-	setTime: PropTypes.func.isRequired
-
-}
+HomePage.propTypes = propTypes;
 
 
 export default HomePage

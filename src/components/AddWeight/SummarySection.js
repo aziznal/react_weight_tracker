@@ -2,6 +2,29 @@
 import PropTypes from 'prop-types';
 
 
+const propTypes = {
+
+	weight: PropTypes.number,
+
+	weightUnit: PropTypes.string,
+
+	date: PropTypes.string.isRequired,
+
+	time: PropTypes.string.isRequired,
+
+	onSubmitEntry: PropTypes.func.isRequired
+
+}
+
+const defaultProps = {
+
+	weight: 0,
+
+	weightUnit: "KG"
+
+}
+
+
 const SummarySection = ({ weight, weightUnit, date, time, onSubmitEntry }) => {
 
 	const constructEntry = () => {
@@ -67,18 +90,7 @@ const SummarySection = ({ weight, weightUnit, date, time, onSubmitEntry }) => {
 	)
 }
 
-SummarySection.propTypes = {
-
-	weight: PropTypes.number,
-
-	weightUnit: PropTypes.string,
-
-	date: PropTypes.string.isRequired,
-
-	time: PropTypes.string.isRequired,
-
-	onSubmitEntry: PropTypes.func.isRequired
-
-}
+SummarySection.propTypes = propTypes;
+SummarySection.defaultProps = defaultProps;
 
 export default SummarySection

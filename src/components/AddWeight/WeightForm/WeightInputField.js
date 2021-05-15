@@ -3,6 +3,16 @@ import PropTypes from 'prop-types';
 import { convertKGtoLBS } from '../../../utils/weight-utils';
 
 
+const propTypes = {
+
+	weight: PropTypes.number.isRequired,
+	updateWeight: PropTypes.func.isRequired,
+
+	weightUnit: PropTypes.string.isRequired
+
+}
+
+
 const WeightInputField = ({ weight, updateWeight, weightUnit }) => {
 
 	const minWeight = 0;
@@ -89,13 +99,6 @@ const WeightInputField = ({ weight, updateWeight, weightUnit }) => {
 	)
 }
 
-WeightInputField.propTypes = {
-
-	weight: PropTypes.number.isRequired,
-	updateWeight: PropTypes.func.isRequired,
-
-	weightUnit: PropTypes.string.isRequired
-
-}
+WeightInputField.propTypes = propTypes;
 
 export default WeightInputField
