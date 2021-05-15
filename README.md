@@ -5,6 +5,10 @@ I made this app in order to get some practice using ***React***
 
 By creating this app, I learned the very basics of React, including hooks, routing, `useState`, and `useEffect`.
 
+At commit `9ee3f4ede..`, I ran into a problem called '***prop drilling***', which is when you're passing many props from a high-level parent component all the way down to deeply nested children components, and it looked pretty horrible. Not to mention that it was difficult to even read.
+
+This is where I learned about the **React Context API** and **Component Composition**
+
 ---
 ## Note
 
