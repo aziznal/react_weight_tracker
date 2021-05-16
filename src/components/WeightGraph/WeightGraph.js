@@ -9,7 +9,7 @@ const propTypes = {
 	entries: PropTypes.array,
 
 	showWeightGraphMenu: PropTypes.bool.isRequired,
-	setShowWeightGraphMenu: PropTypes.func.isRequired
+	onShowWeightGraphMenuChange: PropTypes.func.isRequired
 
 };
 
@@ -22,7 +22,7 @@ const defaultProps = {
 
 // FIXME: Graph is being reloaded every time 'something' happens anywhere in the app. FIX
 
-const WeightGraph = ({ entries, currentWeightUnit, showWeightGraphMenu, setShowWeightGraphMenu }) => {
+const WeightGraph = ({ entries, currentWeightUnit, showWeightGraphMenu, onShowWeightGraphMenuChange }) => {
 
 
 	const setDynamicClassName = () => {
@@ -97,9 +97,9 @@ const WeightGraph = ({ entries, currentWeightUnit, showWeightGraphMenu, setShowW
 	}
 
 	return (
-		<div className={setDynamicClassName()} onClick={() => { !showWeightGraphMenu && setShowWeightGraphMenu(true) }}>
+		<div className={setDynamicClassName()} onClick={() => { !showWeightGraphMenu && onShowWeightGraphMenuChange(true) }}>
 
-			<span className="close-menu-button" onClick={() => { setShowWeightGraphMenu(false) }}>
+			<span className="close-menu-button" onClick={() => { onShowWeightGraphMenuChange(false) }}>
 				&times;
 			</span>
 

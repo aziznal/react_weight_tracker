@@ -10,15 +10,15 @@ const propTypes = {
 	updateWeight: PropTypes.func.isRequired,
 
 	weightUnit: PropTypes.string.isRequired,
-	updateWeightUnit: PropTypes.func.isRequired,
+	onWeightUnitChange: PropTypes.func.isRequired,
 
-	updateDate: PropTypes.func.isRequired,
+	onDateChange: PropTypes.func.isRequired,
 
-	updateTime: PropTypes.func.isRequired,
+	onTimeChange: PropTypes.func.isRequired,
 
 }
 
-const WeightForm = ({ weight, updateWeight, weightUnit, updateWeightUnit, updateDate, updateTime }) => {
+const WeightForm = ({ weight, updateWeight, weightUnit, onWeightUnitChange, onDateChange, onTimeChange }) => {
 
 	function handleSubmit(e) {
 		e.preventDefault();
@@ -30,7 +30,7 @@ const WeightForm = ({ weight, updateWeight, weightUnit, updateWeightUnit, update
 			<WeightInputField
 
 				weightUnit={weightUnit}
-				updateWeightUnit={(newUnit) => updateWeightUnit(newUnit)}
+				onWeightUnitChange={(newUnit) => onWeightUnitChange(newUnit)}
 
 				weight={weight}
 				updateWeight={(newWeight) => updateWeight(newWeight)}
@@ -39,8 +39,8 @@ const WeightForm = ({ weight, updateWeight, weightUnit, updateWeightUnit, update
 
 			<DateInputField
 
-				updateDate={updateDate}
-				updateTime={updateTime}
+				onDateChange={onDateChange}
+				onTimeChange={onTimeChange}
 
 			/>
 

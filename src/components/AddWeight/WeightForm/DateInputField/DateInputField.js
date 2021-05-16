@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 
-import { getDateOfToday, getTimeRightNow } from '../../../../utils/date-utils';
+import { getLocalDate, getLocalTime } from '../../../../utils/date-utils';
 
 import ManualDateInput from './ManualDateInput';
 import AutoDateInput from './AutoDateInput';
@@ -8,13 +8,13 @@ import AutoDateInput from './AutoDateInput';
 
 const propTypes = {
 
-	updateDate: PropTypes.func.isRequired,
+	onDateChange: PropTypes.func.isRequired,
 
-	updateTime: PropTypes.func.isRequired
+	onTimeChange: PropTypes.func.isRequired
 
 }
 
-const DateInputField = ({ updateDate, updateTime }) => {
+const DateInputField = ({ onDateChange, onTimeChange }) => {
 
 
 	function getTimeFieldValue() {
@@ -36,23 +36,23 @@ const DateInputField = ({ updateDate, updateTime }) => {
 	}
 
 
-	function updateDateWrapper(event) {
+	function onDateChangeWrapper(event) {
 
 		event.preventDefault();
 
 		let dateVal = getDateFieldValue();
 
-		updateDate(dateVal);
+		onDateChange(dateVal);
 
 	}
 
-	function updateTimeWrapper(event) {
+	function onTimeChangeWrapper(event) {
 
 		event.preventDefault();
 
 		let timeVal = getTimeFieldValue();
 
-		updateTime(timeVal);
+		onTimeChange(timeVal);
 
 	}
 
@@ -64,19 +64,19 @@ const DateInputField = ({ updateDate, updateTime }) => {
 
 			<ManualDateInput
 
-				updateDate={updateDateWrapper}
-				updateTime={updateTimeWrapper}
+				onDateChange={onDateChangeWrapper}
+				onTimeChange={onTimeChangeWrapper}
 
-				dateFieldVal={getDateOfToday()}
-				timeFieldVal={getTimeRightNow()}
+				dateFieldVal={getLocalDate()}
+				timeFieldVal={getLocalTime()}
 
 			/>
 
 			<AutoDateInput
 
-				updateDate={updateDate}
+				onDateChange={onDateChange}
 
-				updateTime={updateTime}
+				onTimeChange={onTimeChange}
 			/>
 
 		</div >

@@ -10,27 +10,28 @@ import SummarySection from './SummarySection';
 const propTypes = {
 
 	weight: PropTypes.number.isRequired,
-	setWeight: PropTypes.func.isRequired,
+	onWeightChange: PropTypes.func.isRequired,
 
 	weightUnit: PropTypes.string.isRequired,
-	setWeightUnit: PropTypes.func.isRequired,
+	onWeightUnitChange: PropTypes.func.isRequired,
 
 	date: PropTypes.string.isRequired,
-	setDate: PropTypes.func.isRequired,
+	onDateChange: PropTypes.func.isRequired,
 
 	time: PropTypes.string.isRequired,
-	setTime: PropTypes.func.isRequired,
+	onTimeChange: PropTypes.func.isRequired,
 
 	onSubmitEntry: PropTypes.func.isRequired,
 
-	showAddWeightMenu: PropTypes.bool.isRequired
+	showAddWeightMenu: PropTypes.bool.isRequired,
+	onShowAddWeightMenuChange: PropTypes.func.isRequired
 
 };
 
 
 // TODO: find a solution to the below train of parameters (officially kinda ran into 'prop-drilling' here. Yay!)
 // REFACTOR: Use Component Composition to get rid of this
-const AddWeight = ({ weight, setWeight, weightUnit, setWeightUnit, date, setDate, time, setTime, onSubmitEntry, showAddWeightMenu, setShowAddWeightMenu}) => {
+const AddWeight = ({ weight, onWeightChange, weightUnit, onWeightUnitChange, date, onDateChange, time, onTimeChange, onSubmitEntry, showAddWeightMenu, onShowAddWeightMenuChange}) => {
 
 
 	const setDynamicClassName = () => {
@@ -40,16 +41,24 @@ const AddWeight = ({ weight, setWeight, weightUnit, setWeightUnit, date, setDate
 
 	}
 
+	const showMenu = () => {
+		if (!showAddWeightMenu) onShowAddWeightMenuChange(true);	
+	}
+
+	const hideMenu = () => {
+		if (showAddWeightMenu) onShowAddWeightMenuChange(false);
+	}
+
 	return (
-		<div className={setDynamicClassName()} onClick={ () => {!showAddWeightMenu && setShowAddWeightMenu(true)} }>
+		<div className={setDynamicClassName()} onClick={ showMenu }>
 			
-			<span className="close-menu-button" onClick={ () => {setShowAddWeightMenu(false)} }>
+			<span className="close-menu-button" onClick={ hideMenu }>
 				&times;
 			</span>
 
 			<MetricImperialSwitch
 				weightUnit={weightUnit}
-				updateWeightUnit={(newUnit) => setWeightUnit(newUnit)}
+				onWeightUnitChange={(newUnit) => onWeightUnitChange(newUnit)}
 			/>
 
 			<div className="separator"></div>
@@ -57,14 +66,14 @@ const AddWeight = ({ weight, setWeight, weightUnit, setWeightUnit, date, setDate
 			<WeightForm
 
 				weight={weight}
-				updateWeight={setWeight}
+				updateWeight={onWeightChange}
 
-				updateWeightUnit={setWeightUnit}
+				onWeightUnitChange={onWeightUnitChange}
 				weightUnit={weightUnit}
 
-				updateDate={setDate}
+				onDateChange={onDateChange}
 
-				updateTime={setTime}
+				onTimeChange={onTimeChange}
 
 			/>
 

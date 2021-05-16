@@ -4,14 +4,15 @@ import PropTypes from 'prop-types';
 const propTypes = {
 
 	askBeforeDelete: PropTypes.bool.isRequired,
-	setAskBeforeDelete: PropTypes.func.isRequired
+	onAskBeforeDeleteChange: PropTypes.func.isRequired
 
 }
 
-const AskBeforeDeleteCheckBox = ({ askBeforeDelete, setAskBeforeDelete }) => {
+const AskBeforeDeleteCheckBox = ({ askBeforeDelete, onAskBeforeDeleteChange }) => {
 
+	// REFACTOR: use checkbox value instead of toggling state of 'askBeforeDelete'
 	const toggleAskBeforeDelete = () => {
-		setAskBeforeDelete(!askBeforeDelete);
+		onAskBeforeDeleteChange(!askBeforeDelete);
 	}
 
 	return (

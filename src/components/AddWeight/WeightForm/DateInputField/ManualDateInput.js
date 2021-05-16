@@ -4,14 +4,14 @@ import PropTypes from 'prop-types';
 const propTypes = {
 
 	dateFieldVal: PropTypes.string.isRequired,
-	updateDate: PropTypes.func.isRequired,
+	onDateChange: PropTypes.func.isRequired,
 
 	timeFieldVal: PropTypes.string.isRequired,
-	updateTime: PropTypes.func.isRequired
+	onTimeChange: PropTypes.func.isRequired
 
 }
 
-const ManualDateInput = ({ updateDate, updateTime, dateFieldVal, timeFieldVal }) => {
+const ManualDateInput = ({ onDateChange, onTimeChange, dateFieldVal, timeFieldVal }) => {
 
 	return (
 
@@ -25,7 +25,7 @@ const ManualDateInput = ({ updateDate, updateTime, dateFieldVal, timeFieldVal })
 					type="date"
 					id="date-field"
 					defaultValue={dateFieldVal}
-					onChange={(e) => updateDate(e)}
+					onChange={(e) => onDateChange(e)}
 				/>
 
 			</div>
@@ -38,7 +38,7 @@ const ManualDateInput = ({ updateDate, updateTime, dateFieldVal, timeFieldVal })
 					type="time"
 					defaultValue={timeFieldVal}
 					id="time-field"
-					onChange={(e) => updateTime(e)}
+					onChange={(e) => onTimeChange(e)}
 				/>
 
 			</div>

@@ -1,29 +1,32 @@
 import PropTypes from 'prop-types';
 
-import Entry, { scrollEntrySectionToBottom, scrollEntrySectionToTop } from './Entry/Entry';
-import AskBeforeDeleteCheckBox from './AskBeforeDeleteCheckBox';
-
 import { confirmAlert } from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css';
 
 import './weight-list-styles.scss';
+
+import Entry from './Entry/Entry';
+
+import { scrollEntrySectionToBottom, scrollEntrySectionToTop } from '../../utils/navigation-utils'
+
+import AskBeforeDeleteCheckBox from './AskBeforeDeleteCheckBox';
 
 
 const propTypes = {
 
 	entries: PropTypes.array.isRequired,
 
-	onDelete: PropTypes.func.isRequired,
+	onDeleteEntry: PropTypes.func.isRequired,
 
 	askBeforeDelete: PropTypes.bool.isRequired,
-	setAskBeforeDelete: PropTypes.func.isRequired
+	onAskBeforeDeleteChange: PropTypes.func.isRequired
 
 };
 
-const WeightList = ({ entries, onDelete, askBeforeDelete, setAskBeforeDelete }) => {
+const WeightList = ({ entries, onDeleteEntry, askBeforeDelete, onAskBeforeDeleteChange }) => {
 
 
-	const onDeleteWrapper = (...args) => {
+	const onDeleteEntryWrapper = (entry_id) => {
 
 		if (askBeforeDelete) {
 
@@ -34,7 +37,7 @@ const WeightList = ({ entries, onDelete, askBeforeDelete, setAskBeforeDelete }) 
 						<div className="confirm-delete-dialog">
 
 							<h1>Confirm Delete</h1>
-							<p>Are you sure you want to delete entry #{args}?</p>
+							<p>Are you sure you want to delete entry #{entry_id}?</p>
 
 							<div className="row">
 
@@ -42,7 +45,7 @@ const WeightList = ({ entries, onDelete, askBeforeDelete, setAskBeforeDelete }) 
 									Cancel
 								</button>
 
-								<button className="btn" onClick={() => { onDelete(...args); onClose(); }}>
+								<button className="btn" onClick={() => { onDeleteEntry(entry_id); onClose(); }}>
 									Yes
 								</button>
 
@@ -56,7 +59,7 @@ const WeightList = ({ entries, onDelete, askBeforeDelete, setAskBeforeDelete }) 
 
 		} else {
 
-			onDelete(...args)
+			onDeleteEntry(entry_id)
 
 		}
 
@@ -72,7 +75,7 @@ const WeightList = ({ entries, onDelete, askBeforeDelete, setAskBeforeDelete }) 
 		for (let entry of entries) {
 
 			formattedEntryList.push(
-				<Entry key={entry.id} data={entry} onDelete={onDeleteWrapper} />
+				<Entry key={entry.id} entryData={entry} onDeleteEntry={onDeleteEntryWrapper} />
 			)
 
 		}
@@ -87,11 +90,11 @@ const WeightList = ({ entries, onDelete, askBeforeDelete, setAskBeforeDelete }) 
 			<AskBeforeDeleteCheckBox
 
 				askBeforeDelete={askBeforeDelete}
-				setAskBeforeDelete={setAskBeforeDelete}
+				onAskBeforeDeleteChange={onAskBeforeDeleteChange}
 
 			/>
 
-			<div className="weight-list" id="entry-section">
+			<section className="weight-list" id="entry-section">
 
 				<ul>
 
@@ -101,7 +104,7 @@ const WeightList = ({ entries, onDelete, askBeforeDelete, setAskBeforeDelete }) 
 
 				</ul>
 
-			</div>
+			</section>
 
 			<span className="entry-list-scroll-to-top" onClick={scrollEntrySectionToTop}>
 				^

@@ -5,7 +5,7 @@ import { useState } from 'react';
 import './StyleNormalize.css'
 import './App.scss';
 
-import { getDateOfToday, getTimeRightNow } from './utils/date-utils';
+import { getLocalDate, getLocalTime } from './utils/date-utils';
 
 import HomePage from './components/pages/HomePage/HomePage';
 import AboutPage from './components/pages/AboutPage';
@@ -25,17 +25,17 @@ const App = () => {
 	const [weight, setWeight] = useState(0);
 	const [weightUnit, setWeightUnit] = useState("KG");
 
-	const [date, setDate] = useState(getDateOfToday());
-	const [time, setTime] = useState(getTimeRightNow());
+	const [date, setDate] = useState(getLocalDate());
+	const [time, setTime] = useState(getLocalTime());
 
 
-	const setWeightUnitWrapper = (newUnit) => {
+	const onWeightUnitChange = (newUnit) => {
 
-		// When unit is changed, current weight entered will be converted to relevant unit.
+		// convert weight to given new unit
 		setWeightUnit(newUnit);
-
 		let newWeight = Math.round((weightUnit === 'KG' ? convertKGtoLBS(weight) : convertLBStoKG(weight)) * 100) / 100;
 
+		// set current unit to the given new unit
 		setWeight(newWeight);
 
 	}
@@ -50,16 +50,16 @@ const App = () => {
 				<HomePage
 
 					weight={weight}
-					setWeight={setWeight}
+					onWeightChange={setWeight}
 
 					weightUnit={weightUnit}
-					setWeightUnit={setWeightUnitWrapper}
+					onWeightUnitChange={onWeightUnitChange}
 
 					date={date}
-					setDate={setDate}
+					onDateChange={setDate}
 
 					time={time}
-					setTime={setTime}
+					onTimeChange={setTime}
 				/>
 			)} />
 

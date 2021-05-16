@@ -1,47 +1,33 @@
+import PropTypes from 'prop-types';
+
 import WeightEntry from '../../../classes/WeightEntry';
 
 
-
-const scrollEntrySectionToBottom = () => {
-
-	let entry_section = document.getElementById("entry-section");
-
-	entry_section.scrollBy(
+const propTypes = {
+	
+	entryData: PropTypes.shape(
 		{
-			top: entry_section.scrollHeight,
-			behavior: 'smooth'
+			id: PropTypes.number.isRequired,
 
+			weight: PropTypes.number.isRequired,
+
+			unit: PropTypes.string.isRequired,
+
+			date: PropTypes.string.isRequired,
+
+			time: PropTypes.string.isRequired
 		}
-	);
+	).isRequired,
+	
+	onDeleteEntry: PropTypes.func.isRequired
 
 }
 
 
-const scrollEntrySectionToTop = () => {
-
-	let entry_section = document.getElementById("entry-section");
-
-	entry_section.scrollTo(
-		{
-			top: 0,
-			behavior: 'smooth'
-
-		}
-	);
-
-}
+const Entry = ({ entryData, onDeleteEntry }) => {
 
 
-const Entry = ({ data, onDelete }) => {
-
-
-	const createWeightEntry = () => {
-
-		return new WeightEntry(data);
-
-	}
-
-	let weight_entry = createWeightEntry();
+	let weight_entry = new WeightEntry(entryData);
 
 	return (
 		<div className="entry">
@@ -59,7 +45,7 @@ const Entry = ({ data, onDelete }) => {
 				#{weight_entry.id}
 			</span>
 
-			<button className="btn entry-del" onClick={ () => onDelete(weight_entry.id) }>
+			<button className="btn entry-del" onClick={ () => onDeleteEntry(weight_entry.id) }>
 				Delete
 			</button>
 
@@ -67,12 +53,9 @@ const Entry = ({ data, onDelete }) => {
 	)
 }
 
+
+Entry.propTypes = propTypes;
+
+
 export default Entry
 
-export {
-
-	scrollEntrySectionToBottom,
-
-	scrollEntrySectionToTop
-
-}

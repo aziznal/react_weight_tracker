@@ -1,8 +1,6 @@
 
 
-function getDateOfToday() {
-
-	// Note: Returns Local Date
+function getLocalDate() {
 
 	let date = new Date();
 
@@ -10,9 +8,7 @@ function getDateOfToday() {
 }
 
 
-function getTimeRightNow() {
-
-	// Note: Returns Local Time
+function getLocalTime() {
 
 	return new Date().toTimeString().slice(0, 5);
 }
@@ -21,8 +17,8 @@ function getTimeRightNow() {
 
 export {
 
-	getDateOfToday,
+	getLocalDate,
 
-	getTimeRightNow
+	getLocalTime
 }
 

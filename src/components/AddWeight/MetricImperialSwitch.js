@@ -4,11 +4,11 @@ import PropTypes from 'prop-types';
 const propTypes = {
 
 	weightUnit: PropTypes.string.isRequired,
-	updateWeightUnit: PropTypes.func.isRequired
+	onWeightUnitChange: PropTypes.func.isRequired
 
 }
 
-const MetricImperialSwitch = ({ weightUnit, updateWeightUnit }) => {
+const MetricImperialSwitch = ({ weightUnit, onWeightUnitChange }) => {
 
 	return (
 		<div className="container column">
@@ -26,7 +26,7 @@ const MetricImperialSwitch = ({ weightUnit, updateWeightUnit }) => {
 
 						defaultChecked={weightUnit === "LBS" ? "checked" : ""}
 
-						onChange={() => updateWeightUnit("LBS")}
+						onChange={() => onWeightUnitChange("LBS")}
 					/>
 
 					<label htmlFor="pounds">LBS</label>
@@ -39,7 +39,7 @@ const MetricImperialSwitch = ({ weightUnit, updateWeightUnit }) => {
 						type="radio"
 						id="kilograms"
 						defaultChecked={weightUnit === "KG" ? "checked" : ""}
-						onChange={() => updateWeightUnit("KG")}
+						onChange={() => onWeightUnitChange("KG")}
 					/>
 
 					<label htmlFor="kilograms">KG</label>

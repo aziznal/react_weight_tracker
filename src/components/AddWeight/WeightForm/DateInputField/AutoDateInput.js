@@ -1,23 +1,23 @@
 import PropTypes from 'prop-types';
 
 
-import { getDateOfToday, getTimeRightNow } from '../../../../utils/date-utils';
+import { getLocalDate, getLocalTime } from '../../../../utils/date-utils';
 
 
 const propTypes = {
 
-	updateDate: PropTypes.func.isRequired,
+	onDateChange: PropTypes.func.isRequired,
 
-	updateTime: PropTypes.func.isRequired
+	onTimeChange: PropTypes.func.isRequired
 
 }
 
-const AutoDateInput = ({ updateDate, updateTime }) => {
+const AutoDateInput = ({ onDateChange, onTimeChange }) => {
 
 	const setTimeAndDate = () => {
 
-		updateDate(getDateOfToday());
-		updateTime(getTimeRightNow());
+		onDateChange(getLocalDate());
+		onTimeChange(getLocalTime());
 
 	}
 

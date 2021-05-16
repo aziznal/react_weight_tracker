@@ -4,36 +4,38 @@ import { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 
 import BackendService from '../../../services/BackendService';
+import { scrollEntrySectionToBottom } from '../../../utils/navigation-utils';
 
 import Header from './Header';
 import AddWeight from '../../AddWeight/AddWeight';
 import WeightList from '../../WeightList/WeightList';
-import { scrollEntrySectionToBottom } from '../../WeightList/Entry/Entry';
+
+
 import WeightGraph from '../../WeightGraph/WeightGraph';
 
 
 const propTypes = {
 
 	weight: PropTypes.number.isRequired,
-	setWeight: PropTypes.func.isRequired,
+	onWeightChange: PropTypes.func.isRequired,
 
 	weightUnit: PropTypes.string.isRequired,
-	setWeightUnit: PropTypes.func.isRequired,
+	onWeightUnitChange: PropTypes.func.isRequired,
 
 	date: PropTypes.string.isRequired,
-	setDate: PropTypes.func.isRequired,
+	onDateChange: PropTypes.func.isRequired,
 
 	time: PropTypes.string.isRequired,
-	setTime: PropTypes.func.isRequired
+	onTimeChange: PropTypes.func.isRequired
 
 }
 
-const HomePage = ({ weight, setWeight, weightUnit, setWeightUnit, date, setDate, time, setTime }) => {
+const HomePage = ({ weight, onWeightChange, weightUnit, onWeightUnitChange, date, onDateChange, time, onTimeChange }) => {
 
 	const [showAddWeightMenu, setShowAddWeightMenu] = useState(false);
-
 	const [showWeightGraphMenu, setShowWeightGraphMenu] = useState(false);
 
+	// REFACTOR: replace this with useReducer
 	const [entries, setEntries] = useState([]);
 
 	const [askBeforeDelete, setAskBeforeDelete] = useState(true);
@@ -95,10 +97,10 @@ const HomePage = ({ weight, setWeight, weightUnit, setWeightUnit, date, setDate,
 					<WeightList
 
 						askBeforeDelete={askBeforeDelete}
-						setAskBeforeDelete={setAskBeforeDelete}
+						onAskBeforeDeleteChange={setAskBeforeDelete}
 
 						entries={entries}
-						onDelete={onDeleteEntry}
+						onDeleteEntry={onDeleteEntry}
 
 					/>
 
@@ -116,21 +118,21 @@ const HomePage = ({ weight, setWeight, weightUnit, setWeightUnit, date, setDate,
 			< AddWeight
 
 				weight={weight}
-				setWeight={setWeight}
+				onWeightChange={onWeightChange}
 
 				weightUnit={weightUnit}
-				setWeightUnit={setWeightUnit}
+				onWeightUnitChange={onWeightUnitChange}
 
 				date={date}
-				setDate={setDate}
+				onDateChange={onDateChange}
 
 				time={time}
-				setTime={setTime}
+				onTimeChange={onTimeChange}
 
 				onSubmitEntry={onSubmitEntry}
 
 				showAddWeightMenu={showAddWeightMenu}
-				setShowAddWeightMenu={setShowAddWeightMenu}
+				onShowAddWeightMenuChange={setShowAddWeightMenu}
 
 			/>
 
@@ -139,7 +141,7 @@ const HomePage = ({ weight, setWeight, weightUnit, setWeightUnit, date, setDate,
 				entries={entries}
 
 				showWeightGraphMenu={showWeightGraphMenu}
-				setShowWeightGraphMenu={setShowWeightGraphMenu}
+				onShowWeightGraphMenuChange={setShowWeightGraphMenu}
 
 				currentWeightUnit={weightUnit}
 
