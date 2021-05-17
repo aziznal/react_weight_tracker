@@ -1,5 +1,8 @@
 import PropTypes from 'prop-types';
 
+import '../common_styles.scss';
+import './weightgraphmenu_styles.scss';
+
 import { Line } from 'react-chartjs-2';
 import { convertKGtoLBS, convertLBStoKG } from '../../utils/weight-utils';
 

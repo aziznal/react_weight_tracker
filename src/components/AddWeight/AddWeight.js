@@ -1,5 +1,7 @@
 import PropTypes from 'prop-types';
 
+import '../common_styles.scss';
+import './addweightmenu_styles.scss';
 
 import WeightForm from "./WeightForm/WeightForm";
 import MetricImperialSwitch from './MetricImperialSwitch';
