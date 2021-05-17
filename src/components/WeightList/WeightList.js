@@ -23,6 +23,8 @@ const propTypes = {
 
 };
 
+// FIXME: Entry List is re-rendering on every small change
+
 const WeightList = ({ entries, onDeleteEntry, askBeforeDelete, onAskBeforeDeleteChange }) => {
 
 
