@@ -1,3 +1,5 @@
+import React from 'react';
+
 import PropTypes from 'prop-types';
 
 import '../common_styles.scss';
@@ -23,9 +25,7 @@ const defaultProps = {
 }
 
 
-// FIXME: Graph is being reloaded every time 'something' happens anywhere in the app. FIX
-
-const WeightGraph = ({ entries, currentWeightUnit, showWeightGraphMenu, onShowWeightGraphMenuChange }) => {
+const WeightGraph = React.memo(({ entries, currentWeightUnit, showWeightGraphMenu, onShowWeightGraphMenuChange }) => {
 
 
 	const setDynamicClassName = () => {
@@ -111,7 +111,7 @@ const WeightGraph = ({ entries, currentWeightUnit, showWeightGraphMenu, onShowWe
 
 		</div>
 	)
-}
+});
 
 
 WeightGraph.propTypes = propTypes;
