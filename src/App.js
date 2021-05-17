@@ -14,7 +14,6 @@ import { convertKGtoLBS, convertLBStoKG } from './utils/weight-utils';
 
 const App = () => {
 
-	// TODO: refactor project var names.
 	// TODO: install ESLint and follow guidelines closer
 	// TODO: Consider useContext as well ComponentComposition while refactoring app
 
