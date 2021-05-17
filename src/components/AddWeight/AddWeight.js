@@ -6,7 +6,7 @@ import './addweightmenu_styles.scss';
 import WeightForm from "./WeightForm/WeightForm";
 import MetricImperialSwitch from './MetricImperialSwitch';
 
-import SummarySection from './SummarySection';
+import SummarySection from './SummarySection/SummarySection';
 
 
 const propTypes = {
