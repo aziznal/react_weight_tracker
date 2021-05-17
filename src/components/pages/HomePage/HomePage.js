@@ -3,6 +3,8 @@ import { useEffect, useState } from 'react';
 
 import PropTypes from 'prop-types';
 
+import './homepage_styles.scss';
+
 import BackendService from '../../../services/BackendService';
 import { scrollEntrySectionToBottom } from '../../../utils/navigation-utils';
 

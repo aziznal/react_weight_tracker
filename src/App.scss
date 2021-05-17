@@ -111,27 +111,6 @@ label {
 	justify-content: center;
 }
 
-.homepage-container {
-
-	grid-area: home;
-
-	background-color: #d7e5ff;
-
-	box-sizing: border-box;
-
-	padding: 3em 2em;
-
-	border-radius: 5px;
-
-	outline: 5px solid $dark;
-
-	// height: 600px;
-	height: 100%;
-	width: 100%;
-
-	z-index: 3;
-}
-
 .about-page-container {
 	min-height: 100vh;
 
