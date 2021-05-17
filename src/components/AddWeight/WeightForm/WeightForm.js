@@ -1,5 +1,7 @@
 import PropTypes from 'prop-types';
 
+import './weight_form_styles.scss'
+
 import WeightInputField from './WeightInputField';
 import DateInputField from './DateInputField/DateInputField';
 

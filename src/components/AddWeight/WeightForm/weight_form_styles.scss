@@ -1,0 +1,38 @@
+
+.input-field {
+	width: 12em;
+	height: 30px;
+
+	border: none;
+	border-radius: 6px;
+
+	padding-inline: 0.3em;
+
+	&:hover {
+		outline: 1px solid #3686e1;
+	}
+}
+
+
+.radio-button {
+	margin-inline: 1em;
+	width: fit-content;
+
+	input {
+		margin-right: 0.5em;
+	}
+
+	input,
+	label {
+		cursor: pointer;
+	}
+
+	display: flex;
+
+	flex-direction: row;
+
+	align-items: center;
+	justify-content: center;
+}
+
+

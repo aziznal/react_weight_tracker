@@ -69,40 +69,26 @@ html {
 	}
 }
 
-.radio-button {
-	margin-inline: 1em;
-	width: fit-content;
 
-	input {
-		margin-right: 0.5em;
-	}
 
-	input,
-	label {
-		cursor: pointer;
-	}
-
-	display: flex;
-
-	flex-direction: row;
-
-	align-items: center;
-	justify-content: center;
+input {
+	color: black;
+	width: 50%;
 }
 
-.input-field {
-	width: 12em;
-	height: 30px;
+label {
+	width: 50%;
 
-	border: none;
-	border-radius: 6px;
+	box-sizing: border-box;
 
-	padding-inline: 0.3em;
+	padding-right: 2em;
 
-	&:hover {
-		outline: 1px solid #3686e1;
-	}
+	text-align: right;
+
+	font-weight: bold;
+	
 }
+
 
 // ### Main Container Styles ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ###
 
@@ -250,26 +236,6 @@ html {
 	border-bottom: 1px solid $dark;
 }
 
-
-// ### Weight Form Styles ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ###
-
-input {
-	color: black;
-	width: 50%;
-}
-
-label {
-	width: 50%;
-
-	box-sizing: border-box;
-
-	padding-right: 2em;
-
-	text-align: right;
-
-	font-weight: bold;
-	// color: orange;
-}
 
 // ### Weight Display ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ###
 
