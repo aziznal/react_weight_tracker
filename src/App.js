@@ -8,7 +8,7 @@ import './App.scss';
 import { getLocalDate, getLocalTime } from './utils/date-utils';
 
 import HomePage from './components/pages/HomePage/HomePage';
-import AboutPage from './components/pages/AboutPage';
+import AboutPage from './components/pages/AboutPage/AboutPage';
 import { convertKGtoLBS, convertLBStoKG } from './utils/weight-utils';
 
 
