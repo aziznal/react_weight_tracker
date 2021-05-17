@@ -17,8 +17,6 @@ const App = () => {
 	// TODO: install ESLint and follow guidelines closer
 	// TODO: Consider useContext as well ComponentComposition while refactoring app
 
-	// REFACTOR: Separate each component's CSS into its own file instead of gathering 90% of the CSS in App.scss
-
 	// TODO - Design: Opt for tabs-based UI instead of the current weird sliding things. This would also allow a more effective use of Routes
 
 	const [weight, setWeight] = useState(0);
