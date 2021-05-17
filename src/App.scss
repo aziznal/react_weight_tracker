@@ -1,8 +1,4 @@
-$dark: #16459c;
-$primary: #d9d4e9;
-$secondary: #db995a;
-
-// ### Global Styles ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ###
+// ### Global Styles ###
 
 html {
 	scroll-behavior: smooth;
@@ -10,7 +6,6 @@ html {
 	body {
 		margin-block: 5em;
 	}
-
 }
 
 .row {
@@ -40,7 +35,7 @@ html {
 .btn {
 	display: block;
 
-	background-color: $dark;
+	background-color: #16459c;
 
 	color: white;
 
@@ -69,8 +64,6 @@ html {
 	}
 }
 
-
-
 input {
 	color: black;
 	width: 50%;
@@ -86,9 +79,7 @@ label {
 	text-align: right;
 
 	font-weight: bold;
-	
 }
-
 
 Link,
 a {
@@ -119,11 +110,9 @@ a {
 
 	grid-template-columns: 2fr 2fr;
 
-	grid-template-areas: 
-	
+	grid-template-areas:
 		"home weight-add-menu"
-		"home weight-graph-menu"
-	;
+		"home weight-graph-menu";
 
 	width: 1280px;
 
@@ -133,9 +122,7 @@ a {
 	justify-content: center;
 }
 
-
 .separator {
 	width: 100%;
-	// margin-block: 3em;
-	border-bottom: 1px solid $dark;
+	border-bottom: 1px solid #16459c;
 }
