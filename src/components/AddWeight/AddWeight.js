@@ -36,7 +36,7 @@ const AddWeight = ({ weight, onWeightChange, weightUnit, onWeightUnitChange, dat
 
 	const setDynamicClassName = () => {
 
-		return "column weight-add-menu" +
+		return "column sliding-menu weight-add-menu" +
 			(showAddWeightMenu ? " slide-from-left" : " closed-menu");
 
 	}

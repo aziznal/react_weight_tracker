@@ -112,7 +112,7 @@ label {
 }
 
 // ### Main Container Styles ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ###
-.weight-add-menu, .weight-graph-menu {
+.sliding-menu {
 
 	display: grid;
 
@@ -140,6 +140,7 @@ label {
 
 }
 
+
 .weight-add-menu {
 
 	grid-area: weight-add-menu;
@@ -156,6 +157,7 @@ label {
 	height: 300px;
 
 }
+
 
 .closed-menu {
 

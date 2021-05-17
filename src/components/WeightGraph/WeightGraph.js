@@ -27,7 +27,7 @@ const WeightGraph = ({ entries, currentWeightUnit, showWeightGraphMenu, onShowWe
 
 	const setDynamicClassName = () => {
 
-		return "column weight-graph-menu" +
+		return "column sliding-menu weight-graph-menu" +
 			(showWeightGraphMenu ? " slide-from-left" : " closed-menu");
 
 	}
