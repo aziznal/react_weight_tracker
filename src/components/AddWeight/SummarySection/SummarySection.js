@@ -1,5 +1,6 @@
-
 import PropTypes from 'prop-types';
+
+import './summarysection_styles.scss';
 
 
 const propTypes = {
