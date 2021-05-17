@@ -1,5 +1,7 @@
 import { Link } from 'react-router-dom'
 
+import './aboutpage_styles.scss';
+
 const AboutPage = () => {
 
     return (
