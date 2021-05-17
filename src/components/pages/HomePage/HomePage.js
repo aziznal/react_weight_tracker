@@ -1,38 +1,43 @@
 import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 
-import PropTypes from 'prop-types';
-
 import './homepage_styles.scss';
 
 import BackendService from '../../../services/BackendService';
+
 import { scrollEntrySectionToBottom } from '../../../utils/navigation-utils';
+import { getLocalDate, getLocalTime } from '../../../utils/date-utils';
+import { convertKGtoLBS, convertLBStoKG } from '../../../utils/weight-utils';
 
 import Header from './Header';
-import AddWeight from '../../AddWeight/AddWeight';
-import WeightList from '../../WeightList/WeightList';
 
+import AddWeight from '../../AddWeight/AddWeight';
+
+import WeightList from '../../WeightList/WeightList';
 
 import WeightGraph from '../../WeightGraph/WeightGraph';
 
 
-const propTypes = {
+const HomePage = () => {
 
-	weight: PropTypes.number.isRequired,
-	onWeightChange: PropTypes.func.isRequired,
+	const [weight, setWeight] = useState(0);
+	const [weightUnit, setWeightUnit] = useState("KG");
 
-	weightUnit: PropTypes.string.isRequired,
-	onWeightUnitChange: PropTypes.func.isRequired,
+	const [date, setDate] = useState(getLocalDate());
+	const [time, setTime] = useState(getLocalTime());
 
-	date: PropTypes.string.isRequired,
-	onDateChange: PropTypes.func.isRequired,
 
-	time: PropTypes.string.isRequired,
-	onTimeChange: PropTypes.func.isRequired
+	const onWeightUnitChange = (newUnit) => {
 
-}
+		// convert weight to given new unit
+		setWeightUnit(newUnit);
+		let newWeight = Math.round((weightUnit === 'KG' ? convertKGtoLBS(weight) : convertLBStoKG(weight)) * 100) / 100;
 
-const HomePage = ({ weight, onWeightChange, weightUnit, onWeightUnitChange, date, onDateChange, time, onTimeChange }) => {
+		// set current unit to the given new unit
+		setWeight(newWeight);
+
+	}
+
 
 	const [showAddWeightMenu, setShowAddWeightMenu] = useState(false);
 	const [showWeightGraphMenu, setShowWeightGraphMenu] = useState(false);
@@ -120,16 +125,16 @@ const HomePage = ({ weight, onWeightChange, weightUnit, onWeightUnitChange, date
 			< AddWeight
 
 				weight={weight}
-				onWeightChange={onWeightChange}
+				onWeightChange={setWeight}
 
 				weightUnit={weightUnit}
 				onWeightUnitChange={onWeightUnitChange}
 
 				date={date}
-				onDateChange={onDateChange}
+				onDateChange={setDate}
 
 				time={time}
-				onTimeChange={onTimeChange}
+				onTimeChange={setTime}
 
 				onSubmitEntry={onSubmitEntry}
 
@@ -152,8 +157,6 @@ const HomePage = ({ weight, onWeightChange, weightUnit, onWeightUnitChange, date
 		</div>
 	)
 }
-
-HomePage.propTypes = propTypes;
 
 
 export default HomePage
