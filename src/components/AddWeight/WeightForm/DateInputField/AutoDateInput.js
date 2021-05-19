@@ -1,23 +1,18 @@
-import PropTypes from 'prop-types';
+import React from 'react';
 
+import NewEntryContext from '../../../../Contexts/NewEntryContext';
 
 import { getLocalDate, getLocalTime } from '../../../../utils/date-utils';
 
 
-const propTypes = {
-
-	onDateChange: PropTypes.func.isRequired,
-
-	onTimeChange: PropTypes.func.isRequired
-
-}
-
 const AutoDateInput = ({ onDateChange, onTimeChange }) => {
+
+	const newEntryContext = React.useContext(NewEntryContext);
 
 	const setTimeAndDate = () => {
 
-		onDateChange(getLocalDate());
-		onTimeChange(getLocalTime());
+		newEntryContext.setDate(getLocalDate());
+		newEntryContext.setTime(getLocalTime());
 
 	}
 
@@ -35,7 +30,5 @@ const AutoDateInput = ({ onDateChange, onTimeChange }) => {
 	)
 }
 
-
-AutoDateInput.propTypes = propTypes;
 
 export default AutoDateInput

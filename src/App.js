@@ -10,10 +10,10 @@ import AboutPage from './components/pages/AboutPage/AboutPage';
 const App = () => {
 
 	// TODO: install ESLint and follow guidelines closer
-	// TODO: Consider useContext as well ComponentComposition while refactoring app
 
 	// TODO - Design: Opt for tabs-based UI instead of the current weird sliding things. This would also allow a more effective use of Routes
 
+	// TODO - Design: Switch to a dark color scheme
 
 	return (
 

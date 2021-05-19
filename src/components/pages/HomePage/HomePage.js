@@ -1,9 +1,12 @@
+import React from 'react';
+
 import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 
 import './homepage_styles.scss';
 
 import BackendService from '../../../services/BackendService';
+import WeightGraph from '../../WeightGraph/WeightGraph';
 
 import { scrollEntrySectionToBottom } from '../../../utils/navigation-utils';
 import { getLocalDate, getLocalTime } from '../../../utils/date-utils';
@@ -15,17 +18,18 @@ import AddWeight from '../../AddWeight/AddWeight';
 
 import WeightList from '../../WeightList/WeightList';
 
-import WeightGraph from '../../WeightGraph/WeightGraph';
+import NewEntryContext from '../../../Contexts/NewEntryContext';
 
 
 const HomePage = () => {
+
+	const newEntryContext = React.useContext(NewEntryContext);
 
 	const [weight, setWeight] = useState(0);
 	const [weightUnit, setWeightUnit] = useState("KG");
 
 	const [date, setDate] = useState(getLocalDate());
 	const [time, setTime] = useState(getLocalTime());
-
 
 	const onWeightUnitChange = (newUnit) => {
 
@@ -37,6 +41,12 @@ const HomePage = () => {
 		setWeight(newWeight);
 
 	}
+
+	// Setting NewEntryContext states and onStateChanges
+	newEntryContext.weight = weight; newEntryContext.setWeight = setWeight;
+	newEntryContext.unit = weightUnit; newEntryContext.setUnit = onWeightUnitChange;
+	newEntryContext.date = date; newEntryContext.setDate = setDate;
+	newEntryContext.time = time; newEntryContext.setTime = setTime;
 
 
 	const [showAddWeightMenu, setShowAddWeightMenu] = useState(false);
@@ -56,6 +66,7 @@ const HomePage = () => {
 
 	}
 
+	// TODO: Use NewEntryContext's values instead of using callback from SummarySection
 	const onSubmitEntry = async (entry) => {
 		await BackendService.addEntry(entry);
 
@@ -75,6 +86,7 @@ const HomePage = () => {
 
 	}
 
+	// REFACTOR: make this useEffect clearer
 	useEffect(() => {
 
 		const _ = async () => {
@@ -99,6 +111,7 @@ const HomePage = () => {
 				<div className="separator"></div>
 
 
+				{/* TODO: move this parent <div> into WeightList */}
 				<div>
 
 					<WeightList
@@ -124,18 +137,6 @@ const HomePage = () => {
 
 			< AddWeight
 
-				weight={weight}
-				onWeightChange={setWeight}
-
-				weightUnit={weightUnit}
-				onWeightUnitChange={onWeightUnitChange}
-
-				date={date}
-				onDateChange={setDate}
-
-				time={time}
-				onTimeChange={setTime}
-
 				onSubmitEntry={onSubmitEntry}
 
 				showAddWeightMenu={showAddWeightMenu}
@@ -149,8 +150,6 @@ const HomePage = () => {
 
 				showWeightGraphMenu={showWeightGraphMenu}
 				onShowWeightGraphMenuChange={setShowWeightGraphMenu}
-
-				currentWeightUnit={weightUnit}
 
 			/>
 

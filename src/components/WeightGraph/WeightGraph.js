@@ -7,6 +7,7 @@ import './weightgraphmenu_styles.scss';
 
 import { Line } from 'react-chartjs-2';
 import { convertKGtoLBS, convertLBStoKG } from '../../utils/weight-utils';
+import NewEntryContext from '../../Contexts/NewEntryContext';
 
 
 const propTypes = {
@@ -25,7 +26,9 @@ const defaultProps = {
 }
 
 
-const WeightGraph = React.memo(({ entries, currentWeightUnit, showWeightGraphMenu, onShowWeightGraphMenuChange }) => {
+const WeightGraph = React.memo(({ entries, showWeightGraphMenu, onShowWeightGraphMenuChange }) => {
+
+	const newEntryContext = React.useContext(NewEntryContext);
 
 
 	const setDynamicClassName = () => {
@@ -45,7 +48,7 @@ const WeightGraph = React.memo(({ entries, currentWeightUnit, showWeightGraphMen
 
 			// one-liners go brrrrrrrrrRRRRRRRRRRRRRR
 			weights.push(
-				element.unit === currentWeightUnit ? element.weight : currentWeightUnit === 'KG' ? convertLBStoKG(element.weight) : convertKGtoLBS(element.weight)
+				element.unit === newEntryContext.unit ? element.weight : newEntryContext.unit === 'KG' ? convertLBStoKG(element.weight) : convertKGtoLBS(element.weight)
 			);
 
 			labels.push(element.date + "\t" + element.time);
@@ -60,7 +63,7 @@ const WeightGraph = React.memo(({ entries, currentWeightUnit, showWeightGraphMen
 
 			datasets: [{
 
-				label: 'Your last 10 entries (' + currentWeightUnit + ")",
+				label: 'Your last 10 entries (' + newEntryContext.unit + ")",
 
 				data: weights.slice(-10),
 

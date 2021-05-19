@@ -1,14 +1,13 @@
-import PropTypes from 'prop-types';
+import React from 'react';
+
+import NewEntryContext from '../../Contexts/NewEntryContext';
 
 
-const propTypes = {
+const MetricImperialSwitch = () => {
 
-	weightUnit: PropTypes.string.isRequired,
-	onWeightUnitChange: PropTypes.func.isRequired
+	const newEntryContext = React.useContext(NewEntryContext);
 
-}
-
-const MetricImperialSwitch = ({ weightUnit, onWeightUnitChange }) => {
+	// const [weightUnit, onWeightUnitChange] = [newEntryContex.unit, newEntryContext.setUnit ]
 
 	return (
 		<div className="container column">
@@ -24,9 +23,9 @@ const MetricImperialSwitch = ({ weightUnit, onWeightUnitChange }) => {
 						type="radio"
 						id="pounds"
 
-						defaultChecked={weightUnit === "LBS" ? "checked" : ""}
+						defaultChecked={newEntryContext.unit === "LBS" ? "checked" : ""}
 
-						onChange={() => onWeightUnitChange("LBS")}
+						onChange={() => newEntryContext.setUnit("LBS")}
 					/>
 
 					<label htmlFor="pounds">LBS</label>
@@ -38,8 +37,8 @@ const MetricImperialSwitch = ({ weightUnit, onWeightUnitChange }) => {
 						name="weight-type"
 						type="radio"
 						id="kilograms"
-						defaultChecked={weightUnit === "KG" ? "checked" : ""}
-						onChange={() => onWeightUnitChange("KG")}
+						defaultChecked={newEntryContext.unit === "KG" ? "checked" : ""}
+						onChange={() => newEntryContext.setUnit("KG")}
 					/>
 
 					<label htmlFor="kilograms">KG</label>
@@ -50,9 +49,6 @@ const MetricImperialSwitch = ({ weightUnit, onWeightUnitChange }) => {
 		</div>
 	)
 }
-
-
-MetricImperialSwitch.propTypes = propTypes;
 
 
 export default MetricImperialSwitch

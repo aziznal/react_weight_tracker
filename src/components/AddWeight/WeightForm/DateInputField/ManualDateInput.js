@@ -1,17 +1,56 @@
-import PropTypes from 'prop-types';
+import React from 'react';
+
+import NewEntryContext from '../../../../Contexts/NewEntryContext';
+
+import { getLocalDate, getLocalTime } from '../../../../utils/date-utils';
 
 
-const propTypes = {
 
-	dateFieldVal: PropTypes.string.isRequired,
-	onDateChange: PropTypes.func.isRequired,
+const ManualDateInput = () => {
 
-	timeFieldVal: PropTypes.string.isRequired,
-	onTimeChange: PropTypes.func.isRequired
+	const newEntryContext = React.useContext(NewEntryContext);
 
-}
 
-const ManualDateInput = ({ onDateChange, onTimeChange, dateFieldVal, timeFieldVal }) => {
+	function getTimeFieldValue() {
+		let timeField = document.getElementById("time-field");
+
+		let fieldVal = timeField.value;
+
+		return fieldVal;
+
+	}
+
+	function getDateFieldValue() {
+		let dateField = document.getElementById("date-field");
+
+		let fieldVal = dateField.value;
+
+		return fieldVal;
+
+	}
+
+
+
+	function setDateWrapper(event) {
+
+		event.preventDefault();
+
+		let dateVal = getDateFieldValue();
+
+		newEntryContext.setDate(dateVal);
+
+	}
+
+	function setTimeWrapper(event) {
+
+		event.preventDefault();
+
+		let timeVal = getTimeFieldValue();
+
+		newEntryContext.setTime(timeVal);
+
+	}
+
 
 	return (
 
@@ -24,8 +63,8 @@ const ManualDateInput = ({ onDateChange, onTimeChange, dateFieldVal, timeFieldVa
 					className="input-field datetime-input"
 					type="date"
 					id="date-field"
-					defaultValue={dateFieldVal}
-					onChange={(e) => onDateChange(e)}
+					defaultValue={getLocalDate()}
+					onChange={(e) => setDateWrapper(e)}
 				/>
 
 			</div>
@@ -36,9 +75,9 @@ const ManualDateInput = ({ onDateChange, onTimeChange, dateFieldVal, timeFieldVa
 				<input
 					className="input-field datetime-input"
 					type="time"
-					defaultValue={timeFieldVal}
+					defaultValue={getLocalTime()}
 					id="time-field"
-					onChange={(e) => onTimeChange(e)}
+					onChange={(e) => setTimeWrapper(e)}
 				/>
 
 			</div>
@@ -48,8 +87,4 @@ const ManualDateInput = ({ onDateChange, onTimeChange, dateFieldVal, timeFieldVa
 }
 
 
-ManualDateInput.propTypes = propTypes;
-
-
 export default ManualDateInput
-

@@ -11,18 +11,6 @@ import SummarySection from './SummarySection/SummarySection';
 
 const propTypes = {
 
-	weight: PropTypes.number.isRequired,
-	onWeightChange: PropTypes.func.isRequired,
-
-	weightUnit: PropTypes.string.isRequired,
-	onWeightUnitChange: PropTypes.func.isRequired,
-
-	date: PropTypes.string.isRequired,
-	onDateChange: PropTypes.func.isRequired,
-
-	time: PropTypes.string.isRequired,
-	onTimeChange: PropTypes.func.isRequired,
-
 	onSubmitEntry: PropTypes.func.isRequired,
 
 	showAddWeightMenu: PropTypes.bool.isRequired,
@@ -31,10 +19,7 @@ const propTypes = {
 };
 
 
-// TODO: find a solution to the below train of parameters (officially kinda ran into 'prop-drilling' here. Yay!)
-// REFACTOR: Use Component Composition to get rid of this
-const AddWeight = ({ weight, onWeightChange, weightUnit, onWeightUnitChange, date, onDateChange, time, onTimeChange, onSubmitEntry, showAddWeightMenu, onShowAddWeightMenuChange}) => {
-
+const AddWeight = ({ onSubmitEntry, showAddWeightMenu, onShowAddWeightMenuChange}) => {
 
 	const setDynamicClassName = () => {
 
@@ -58,43 +43,21 @@ const AddWeight = ({ weight, onWeightChange, weightUnit, onWeightUnitChange, dat
 				&times;
 			</span>
 
-			<MetricImperialSwitch
-				weightUnit={weightUnit}
-				onWeightUnitChange={(newUnit) => onWeightUnitChange(newUnit)}
-			/>
 
-			<div className="separator"></div>
+			<MetricImperialSwitch />
 
-			<WeightForm
-
-				weight={weight}
-				updateWeight={onWeightChange}
-
-				onWeightUnitChange={onWeightUnitChange}
-				weightUnit={weightUnit}
-
-				onDateChange={onDateChange}
-
-				onTimeChange={onTimeChange}
-
-			/>
 
 			<div className="separator"></div>
 
 
-			< SummarySection
+			<WeightForm />
 
-				weight={weight}
 
-				weightUnit={weightUnit}
+			<div className="separator"></div>
 
-				date={date}
 
-				time={time}
-
-				onSubmitEntry={onSubmitEntry}
-
-			/>
+			<SummarySection onSubmitEntry={onSubmitEntry} />
+			
 		</div>
 	)
 }

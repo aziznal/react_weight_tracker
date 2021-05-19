@@ -1,40 +1,22 @@
-import PropTypes from 'prop-types';
+import React from 'react';
+
+import NewEntryContext from '../../../Contexts/NewEntryContext';
 
 import './summarysection_styles.scss';
 
 
-const propTypes = {
+const SummarySection = ({ onSubmitEntry }) => {
 
-	weight: PropTypes.number,
+	const newEntryContext = React.useContext(NewEntryContext);
 
-	weightUnit: PropTypes.string,
-
-	date: PropTypes.string.isRequired,
-
-	time: PropTypes.string.isRequired,
-
-	onSubmitEntry: PropTypes.func.isRequired
-
-}
-
-const defaultProps = {
-
-	weight: 0,
-
-	weightUnit: "KG"
-
-}
-
-
-const SummarySection = ({ weight, weightUnit, date, time, onSubmitEntry }) => {
 
 	const constructEntry = () => {
 
 		let newEntry = {
-			"weight": weight,
-			"unit": weightUnit,
-			"date": date,
-			"time": time
+			"weight": newEntryContext.weight,
+			"unit": newEntryContext.unit,
+			"date": newEntryContext.date,
+			"time": newEntryContext.time
 		}
 
 		return newEntry;
@@ -74,12 +56,12 @@ const SummarySection = ({ weight, weightUnit, date, time, onSubmitEntry }) => {
 		<div>
 
 			<span className="row weight-display">
-				You weighed {weight} {weightUnit}
+				You weighed {newEntryContext.weight} {newEntryContext.weightUnit}
 			</span>
 
 
 			<span className="row date-time-display">
-				at {date} - {time}
+				at {newEntryContext.date} - {newEntryContext.time}
 			</span>
 
 
@@ -91,7 +73,5 @@ const SummarySection = ({ weight, weightUnit, date, time, onSubmitEntry }) => {
 	)
 }
 
-SummarySection.propTypes = propTypes;
-SummarySection.defaultProps = defaultProps;
 
 export default SummarySection

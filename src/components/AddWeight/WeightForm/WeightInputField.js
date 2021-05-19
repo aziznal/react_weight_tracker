@@ -1,26 +1,21 @@
-import PropTypes from 'prop-types';
+import React from 'react';
+
+import NewEntryContext from '../../../Contexts/NewEntryContext';
 
 import { convertKGtoLBS } from '../../../utils/weight-utils';
 
 
-const propTypes = {
 
-	weight: PropTypes.number.isRequired,
-	updateWeight: PropTypes.func.isRequired,
+const WeightInputField = () => {
 
-	weightUnit: PropTypes.string.isRequired
-
-}
-
-
-const WeightInputField = ({ weight, updateWeight, weightUnit }) => {
+	const newEntryContext = React.useContext(NewEntryContext);
 
 	const minWeight = 0;
 	const maxWeight = 500;
 
 	const getMinMaxWeightBasedOnUnit = () => {
 
-		if (weightUnit === 'KG') {
+		if (newEntryContext.unit === 'KG') {
 			return { min: minWeight, max: maxWeight };
 		} else {
 			return { min: convertKGtoLBS(minWeight), max: convertKGtoLBS(maxWeight) };
@@ -60,13 +55,13 @@ const WeightInputField = ({ weight, updateWeight, weightUnit }) => {
 	}
 
 
-	const updateWeightWrapper = (e) => {
+	const setWeightWrapper = (e) => {
 
 		e.preventDefault();
 
 		let newWeight = getWeightFieldValue();
 
-		updateWeight(newWeight);
+		newEntryContext.setWeight(newWeight);
 
 	}
 
@@ -76,21 +71,21 @@ const WeightInputField = ({ weight, updateWeight, weightUnit }) => {
 		<div className="container column">
 
 			<div className="row">
-				<label htmlFor="weight-field" >Enter your weight in {weightUnit} </label>
+				<label htmlFor="weight-field" >Enter your weight in {newEntryContext.unit} </label>
 
 				<input
 					className="input-field weight-input"
 					type="number"
 					step="any"
 
-					value={weight}
+					value={newEntryContext.weight}
 
 					min={getMinMaxWeightBasedOnUnit().min}
 					max={getMinMaxWeightBasedOnUnit().max}
 
 					id="weight-field"
 					name="weight-field"
-					onChange={(e) => updateWeightWrapper(e)}
+					onChange={(e) => setWeightWrapper(e)}
 				/>
 			</div>
 
@@ -98,7 +93,5 @@ const WeightInputField = ({ weight, updateWeight, weightUnit }) => {
 
 	)
 }
-
-WeightInputField.propTypes = propTypes;
 
 export default WeightInputField
