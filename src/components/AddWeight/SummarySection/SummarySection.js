@@ -37,9 +37,8 @@ const SummarySection = ({ onSubmitEntry }) => {
 	return (
 		<div>
 
-			{/* FIXME: Weight unit is not showing anymore */}
 			<span className="row weight-display">
-				You weighed {newEntryContext.weight} {newEntryContext.weightUnit}
+				You weighed {newEntryContext.weight} {newEntryContext.unit}
 			</span>
 
 

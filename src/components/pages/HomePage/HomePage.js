@@ -118,21 +118,15 @@ const HomePage = () => {
 
 				<div className="separator"></div>
 
+				<WeightList
 
-				{/* TODO: move this parent <div> into WeightList */}
-				<div>
+					askBeforeDelete={askBeforeDelete}
+					onAskBeforeDeleteChange={setAskBeforeDelete}
 
-					<WeightList
+					entries={entries}
+					onDeleteEntry={onDeleteEntry}
 
-						askBeforeDelete={askBeforeDelete}
-						onAskBeforeDeleteChange={setAskBeforeDelete}
-
-						entries={entries}
-						onDeleteEntry={onDeleteEntry}
-
-					/>
-
-				</div>
+				/>
 
 				<div className="row">
 					<Link to={'/about'}>About</Link>
