@@ -94,18 +94,10 @@ const HomePage = () => {
 
 	}
 
-	// REFACTOR: make this useEffect clearer
 	useEffect(() => {
 
-		const _ = async () => {
-
-			await getEntries();
-
-		}
-
-		_();
-
-
+		(async () => { await getEntries(); })();
+		
 	}, [])
 
 	return (
