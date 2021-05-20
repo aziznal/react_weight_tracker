@@ -49,9 +49,6 @@ const HomePage = () => {
 	newEntryContext.time = time; newEntryContext.setTime = setTime;
 
 
-	const [showAddWeightMenu, setShowAddWeightMenu] = useState(false);
-	const [showWeightGraphMenu, setShowWeightGraphMenu] = useState(false);
-
 	// REFACTOR: replace this with useReducer
 	const [entries, setEntries] = useState([]);
 
@@ -97,7 +94,7 @@ const HomePage = () => {
 	useEffect(() => {
 
 		(async () => { await getEntries(); })();
-		
+
 	}, [])
 
 	return (
@@ -129,23 +126,9 @@ const HomePage = () => {
 			</div>
 
 
-			< AddWeight
+			<AddWeight onSubmitEntry={onSubmitEntry} />
 
-				onSubmitEntry={onSubmitEntry}
-
-				showAddWeightMenu={showAddWeightMenu}
-				onShowAddWeightMenuChange={setShowAddWeightMenu}
-
-			/>
-
-			<WeightGraph
-			
-				entries={entries}
-
-				showWeightGraphMenu={showWeightGraphMenu}
-				onShowWeightGraphMenuChange={setShowWeightGraphMenu}
-
-			/>
+			<WeightGraph entries={entries} />
 
 		</div>
 	)

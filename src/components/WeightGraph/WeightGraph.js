@@ -11,12 +11,7 @@ import NewEntryContext from '../../Contexts/NewEntryContext';
 
 
 const propTypes = {
-
-	entries: PropTypes.array,
-
-	showWeightGraphMenu: PropTypes.bool.isRequired,
-	onShowWeightGraphMenuChange: PropTypes.func.isRequired
-
+	entries: PropTypes.array
 };
 
 const defaultProps = {
@@ -26,10 +21,11 @@ const defaultProps = {
 }
 
 
-const WeightGraph = React.memo(({ entries, showWeightGraphMenu, onShowWeightGraphMenuChange }) => {
+const WeightGraph = React.memo(({ entries }) => {
 
 	const newEntryContext = React.useContext(NewEntryContext);
 
+	const [showWeightGraphMenu, setShowWeightGraphMenu] = React.useState(false);
 
 	const setDynamicClassName = () => {
 
@@ -102,13 +98,22 @@ const WeightGraph = React.memo(({ entries, showWeightGraphMenu, onShowWeightGrap
 
 	}
 
-	return (
-		<div className={setDynamicClassName()} onClick={() => { !showWeightGraphMenu && onShowWeightGraphMenuChange(true) }}>
 
-			<span className="close-menu-button" onClick={() => { onShowWeightGraphMenuChange(false) }}>
+	const showMenu = () => {
+		if (!showWeightGraphMenu) setShowWeightGraphMenu(true);
+	}
+
+	const hideMenu = () => {
+		if (showWeightGraphMenu) setShowWeightGraphMenu(false);
+	}
+
+
+	return (
+		<div className={setDynamicClassName()} onClick={showMenu}>
+
+			<span className="close-menu-button" onClick={hideMenu}>
 				&times;
 			</span>
-
 
 			{ createGraph()}
 

@@ -1,3 +1,5 @@
+import React from 'react';
+
 import PropTypes from 'prop-types';
 
 import '../common_styles.scss';
@@ -11,15 +13,14 @@ import SummarySection from './SummarySection/SummarySection';
 
 const propTypes = {
 
-	onSubmitEntry: PropTypes.func.isRequired,
-
-	showAddWeightMenu: PropTypes.bool.isRequired,
-	onShowAddWeightMenuChange: PropTypes.func.isRequired
+	onSubmitEntry: PropTypes.func.isRequired
 
 };
 
 
-const AddWeight = ({ onSubmitEntry, showAddWeightMenu, onShowAddWeightMenuChange}) => {
+const AddWeight = ({ onSubmitEntry }) => {
+
+	const [showAddWeightMenu, setShowAddWeightMenu] = React.useState(false);
 
 	const setDynamicClassName = () => {
 
@@ -29,17 +30,17 @@ const AddWeight = ({ onSubmitEntry, showAddWeightMenu, onShowAddWeightMenuChange
 	}
 
 	const showMenu = () => {
-		if (!showAddWeightMenu) onShowAddWeightMenuChange(true);	
+		if (!showAddWeightMenu) setShowAddWeightMenu(true);
 	}
 
 	const hideMenu = () => {
-		if (showAddWeightMenu) onShowAddWeightMenuChange(false);
+		if (showAddWeightMenu) setShowAddWeightMenu(false);
 	}
 
 	return (
-		<div className={setDynamicClassName()} onClick={ showMenu }>
-			
-			<span className="close-menu-button" onClick={ hideMenu }>
+		<div className={setDynamicClassName()} onClick={showMenu}>
+
+			<span className="close-menu-button" onClick={hideMenu}>
 				&times;
 			</span>
 
@@ -57,7 +58,7 @@ const AddWeight = ({ onSubmitEntry, showAddWeightMenu, onShowAddWeightMenuChange
 
 
 			<SummarySection onSubmitEntry={onSubmitEntry} />
-			
+
 		</div>
 	)
 }
