@@ -66,10 +66,18 @@ const HomePage = () => {
 
 	}
 
-	// TODO: Use NewEntryContext's values instead of using callback from SummarySection
-	const onSubmitEntry = async (entry) => {
+	const onSubmitEntry = async () => {
+
+		let entry = {
+			weight: newEntryContext.weight,
+			unit: newEntryContext.unit,
+			date: newEntryContext.date,
+			time: newEntryContext.time
+		}
+
 		await BackendService.addEntry(entry);
 
+		// Refresh entry list afterwards
 		await getEntries();
 
 		scrollEntrySectionToBottom();

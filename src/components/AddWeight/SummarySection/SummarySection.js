@@ -10,40 +10,22 @@ const SummarySection = ({ onSubmitEntry }) => {
 	const newEntryContext = React.useContext(NewEntryContext);
 
 
-	const constructEntry = () => {
+	const checkEntryIsValid = () => {
 
-		let newEntry = {
-			"weight": newEntryContext.weight,
-			"unit": newEntryContext.unit,
-			"date": newEntryContext.date,
-			"time": newEntryContext.time
-		}
-
-		return newEntry;
-
-	}
-
-
-	const checkEntryIsValid = (entry) => {
-
-		let isValid = (
-			entry.weight !== 0 &&
-			entry.date !== undefined &&
-			entry.time !== undefined
+		return (
+			newEntryContext.weight !== 0 &&
+			newEntryContext.date !== undefined &&
+			newEntryContext.time !== undefined
 		);
-
-		return isValid;
 
 	}
 
 
 	const onSubmitEntryWrapper = async () => {
 
-		let entry = constructEntry();
+		if (checkEntryIsValid()) {
 
-		if (checkEntryIsValid(entry)) {
-
-			await onSubmitEntry(entry);
+			await onSubmitEntry();
 
 		} else {
 			alert("Did you choose Weight (> 0), Date, and Time?");
@@ -55,6 +37,7 @@ const SummarySection = ({ onSubmitEntry }) => {
 	return (
 		<div>
 
+			{/* FIXME: Weight unit is not showing anymore */}
 			<span className="row weight-display">
 				You weighed {newEntryContext.weight} {newEntryContext.weightUnit}
 			</span>
