@@ -13,6 +13,8 @@ const WeightInputField = () => {
 	const minWeight = 0;
 	const maxWeight = 500;
 
+	let weightChangeTimeout;
+
 	const getMinMaxWeightBasedOnUnit = () => {
 
 		if (newEntryContext.unit === 'KG') {
@@ -56,12 +58,23 @@ const WeightInputField = () => {
 
 
 	const setWeightWrapper = (e) => {
+		
+		// If function has been called, then input is still being updated, so clear current timeOut
+		clearTimeout(weightChangeTimeout);	
 
-		e.preventDefault();
+		// Set timeout again in case the user is about to let go of input
+		weightChangeTimeout = setTimeout(
+			() => {
 
-		let newWeight = getWeightFieldValue();
+				e.preventDefault();
 
-		newEntryContext.setWeight(newWeight);
+				let newWeight = getWeightFieldValue();
+
+				newEntryContext.setWeight(newWeight);
+
+
+			}, 250
+		);
 
 	}
 
@@ -78,14 +91,14 @@ const WeightInputField = () => {
 					type="number"
 					step="any"
 
-					value={newEntryContext.weight}
+					defaultValue={0}
 
 					min={getMinMaxWeightBasedOnUnit().min}
 					max={getMinMaxWeightBasedOnUnit().max}
 
 					id="weight-field"
 					name="weight-field"
-					onChange={(e) => setWeightWrapper(e)}
+					onInput={(e) => setWeightWrapper(e)}
 				/>
 			</div>
 
