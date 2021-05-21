@@ -25,9 +25,6 @@ const propTypes = {
 
 const AddWeight = ({ onSubmitEntry }) => {
 
-	console.log("AddWeight");
-
-
 	const newEntryContext = React.useContext(NewEntryContext);
 
 	const [weight, setWeight] = React.useState(0);

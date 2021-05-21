@@ -3,7 +3,6 @@ import './header_styles.scss'
 
 const Header = () => {
 	
-	console.log("Header");
 
 	return (
 		<header>

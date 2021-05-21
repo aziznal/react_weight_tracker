@@ -22,8 +22,6 @@ const propTypes = {
 
 const EntryList = React.memo(({ entries, onDeleteEntry, askBeforeDelete }) => {
 
-	console.log("EntryList");
-
 	const onDeleteEntryWrapper = (entry_id) => {
 
 		if (askBeforeDelete) {

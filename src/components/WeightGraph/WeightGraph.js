@@ -23,8 +23,6 @@ const defaultProps = {
 
 const WeightGraph = React.memo(({ entries }) => {
 
-	console.log("WeightGraph");
-
 	const newEntryContext = React.useContext(NewEntryContext);
 
 	const [showWeightGraphMenu, setShowWeightGraphMenu] = React.useState(false);

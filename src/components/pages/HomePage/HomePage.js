@@ -20,8 +20,6 @@ import WeightList from '../../WeightList/WeightList';
 
 const HomePage = () => {
 
-	console.log("\n\nHomePage");
-
 	// REFACTOR: replace this with useReducer
 	const [entries, setEntries] = useState([]);
 
