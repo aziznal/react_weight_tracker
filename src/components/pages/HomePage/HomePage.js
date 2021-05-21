@@ -18,9 +18,6 @@ import WeightList from '../../WeightList/WeightList';
 
 
 
-// FIXME: <HomePage> is updating too many times because it uses NewEntryContext
-
-
 const HomePage = () => {
 
 	console.log("\n\nHomePage");
