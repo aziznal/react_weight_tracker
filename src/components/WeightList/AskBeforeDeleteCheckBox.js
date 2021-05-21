@@ -10,9 +10,20 @@ const propTypes = {
 
 const AskBeforeDeleteCheckBox = ({ askBeforeDelete, onAskBeforeDeleteChange }) => {
 
-	// REFACTOR: use checkbox value instead of toggling state of 'askBeforeDelete'
+	
+	const getCheckboxValue = () => {
+
+		let checkbox = document.getElementById("ask-before-delete");
+
+		return checkbox.checked;
+
+	}
+
 	const toggleAskBeforeDelete = () => {
-		onAskBeforeDeleteChange(!askBeforeDelete);
+
+		let checkboxValue = getCheckboxValue();
+		
+		onAskBeforeDeleteChange(checkboxValue);
 	}
 
 	return (
