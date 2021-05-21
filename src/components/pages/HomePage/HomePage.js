@@ -57,9 +57,6 @@ const HomePage = () => {
 	// REFACTOR: replace this with useReducer
 	const [entries, setEntries] = useState([]);
 
-	const [askBeforeDelete, setAskBeforeDelete] = useState(true);
-
-
 	const getEntries = async () => {
 
 		const entries = await BackendService.fetchAllEntries();
@@ -113,9 +110,6 @@ const HomePage = () => {
 				<div className="separator"></div>
 
 				<WeightList
-
-					askBeforeDelete={askBeforeDelete}
-					onAskBeforeDeleteChange={setAskBeforeDelete}
 
 					entries={entries}
 					onDeleteEntry={onDeleteEntry}

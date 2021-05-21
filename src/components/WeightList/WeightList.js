@@ -1,3 +1,5 @@
+import React from 'react';
+
 import PropTypes from 'prop-types';
 
 import { confirmAlert } from 'react-confirm-alert';
@@ -16,18 +18,17 @@ const propTypes = {
 
 	entries: PropTypes.array.isRequired,
 
-	onDeleteEntry: PropTypes.func.isRequired,
-
-	askBeforeDelete: PropTypes.bool.isRequired,
-	onAskBeforeDeleteChange: PropTypes.func.isRequired
+	onDeleteEntry: PropTypes.func.isRequired
 
 };
 
 // FIXME: Entry List is re-rendering on every small change
 
-const WeightList = ({ entries, onDeleteEntry, askBeforeDelete, onAskBeforeDeleteChange }) => {
+const WeightList = ({ entries, onDeleteEntry }) => {
 
 	console.log("WeightList");
+	
+	const [askBeforeDelete, setAskBeforeDelete] = React.useState(true);
 
 	const onDeleteEntryWrapper = (entry_id) => {
 
@@ -93,7 +94,7 @@ const WeightList = ({ entries, onDeleteEntry, askBeforeDelete, onAskBeforeDelete
 			<AskBeforeDeleteCheckBox
 
 				askBeforeDelete={askBeforeDelete}
-				onAskBeforeDeleteChange={onAskBeforeDeleteChange}
+				onAskBeforeDeleteChange={setAskBeforeDelete}
 
 			/>
 
