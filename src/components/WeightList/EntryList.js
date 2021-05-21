@@ -22,7 +22,7 @@ const propTypes = {
 
 const EntryList = React.memo(({ entries, onDeleteEntry, askBeforeDelete }) => {
 
-	console.log("yo" + (Date.now()%100))
+	console.log("EntryList");
 
 	const onDeleteEntryWrapper = (entry_id) => {
 

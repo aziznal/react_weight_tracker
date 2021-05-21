@@ -20,6 +20,8 @@ const propTypes = {
 
 const AddWeight = ({ onSubmitEntry }) => {
 
+	console.log("AddWeight");
+
 	const [showAddWeightMenu, setShowAddWeightMenu] = React.useState(false);
 
 	const setDynamicClassName = () => {

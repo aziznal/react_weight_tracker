@@ -21,7 +21,12 @@ import WeightList from '../../WeightList/WeightList';
 import NewEntryContext from '../../../Contexts/NewEntryContext';
 
 
+// FIXME: <Header> and <AddWeight> Components are being updated unneccesarily when an entry is deleted.
+
+
 const HomePage = () => {
+
+	console.log("\n\nHomePage");
 
 	const newEntryContext = React.useContext(NewEntryContext);
 

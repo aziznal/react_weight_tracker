@@ -27,6 +27,7 @@ const propTypes = {
 
 const WeightList = ({ entries, onDeleteEntry, askBeforeDelete, onAskBeforeDeleteChange }) => {
 
+	console.log("WeightList");
 
 	const onDeleteEntryWrapper = (entry_id) => {
 
