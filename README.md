@@ -7,7 +7,9 @@ By creating this app, I learned the very basics of React, including hooks, routi
 
 At commit `9ee3f4ede..`, I ran into a problem called '***prop drilling***', which is when you're passing many props from a high-level parent component all the way down to deeply nested children components, and it looked pretty horrible. Not to mention that it was difficult to even read.
 
-This is where I learned about the **React Context API** and **Component Composition**
+This is where I learned about the **React Context API**. Using react's context API allowed me to overcome the issue of passing many props down multiple levels, but it also brought to my attention a new problem: *The ridiculous amount of re-renders my app is doing on **every** change to the context*.
+
+I learned the basics of how to optimize usage of react's context API and made it so that states are as close as possible to the only components that need them.
 
 ---
 ## Note
