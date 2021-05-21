@@ -15,14 +15,14 @@ const propTypes = {
 };
 
 const defaultProps = {
-
 	entries: []
-
 }
 
 
-const WeightGraph = React.memo(({ entries }) => {
+const WeightGraph = ({ entries }) => {
 
+	// BUG: Weight unit is not being updated here when it's changed from another component
+	// FIXME: This is ineffecient because this component only cares about weight unit
 	const newEntryContext = React.useContext(NewEntryContext);
 
 	const [showWeightGraphMenu, setShowWeightGraphMenu] = React.useState(false);
@@ -43,6 +43,7 @@ const WeightGraph = React.memo(({ entries }) => {
 		entries.forEach(element => {
 
 			// one-liners go brrrrrrrrrRRRRRRRRRRRRRR
+			// REFACTOR into something a bit more readeable
 			weights.push(
 				element.unit === newEntryContext.unit ? element.weight : newEntryContext.unit === 'KG' ? convertLBStoKG(element.weight) : convertKGtoLBS(element.weight)
 			);
@@ -119,7 +120,7 @@ const WeightGraph = React.memo(({ entries }) => {
 
 		</div>
 	)
-});
+};
 
 
 WeightGraph.propTypes = propTypes;
