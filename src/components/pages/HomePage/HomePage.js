@@ -9,8 +9,6 @@ import BackendService from '../../../services/BackendService';
 import WeightGraph from '../../WeightGraph/WeightGraph';
 
 import { scrollEntrySectionToBottom } from '../../../utils/navigation-utils';
-import { getLocalDate, getLocalTime } from '../../../utils/date-utils';
-import { convertKGtoLBS, convertLBStoKG } from '../../../utils/weight-utils';
 
 import Header from './Header';
 
@@ -18,41 +16,14 @@ import AddWeight from '../../AddWeight/AddWeight';
 
 import WeightList from '../../WeightList/WeightList';
 
-import NewEntryContext from '../../../Contexts/NewEntryContext';
 
 
-// FIXME: <Header> and <AddWeight> Components are being updated unneccesarily when an entry is deleted.
+// FIXME: <HomePage> is updating too many times because it uses NewEntryContext
 
 
 const HomePage = () => {
 
 	console.log("\n\nHomePage");
-
-	const newEntryContext = React.useContext(NewEntryContext);
-
-	const [weight, setWeight] = useState(0);
-	const [weightUnit, setWeightUnit] = useState("KG");
-
-	const [date, setDate] = useState(getLocalDate());
-	const [time, setTime] = useState(getLocalTime());
-
-	const onWeightUnitChange = (newUnit) => {
-
-		// convert weight to given new unit
-		setWeightUnit(newUnit);
-		let newWeight = Math.round((weightUnit === 'KG' ? convertKGtoLBS(weight) : convertLBStoKG(weight)) * 100) / 100;
-
-		// set current unit to the given new unit
-		setWeight(newWeight);
-
-	}
-
-	// Setting NewEntryContext states and onStateChanges
-	newEntryContext.weight = weight; newEntryContext.setWeight = setWeight;
-	newEntryContext.unit = weightUnit; newEntryContext.setUnit = onWeightUnitChange;
-	newEntryContext.date = date; newEntryContext.setDate = setDate;
-	newEntryContext.time = time; newEntryContext.setTime = setTime;
-
 
 	// REFACTOR: replace this with useReducer
 	const [entries, setEntries] = useState([]);
@@ -65,7 +36,7 @@ const HomePage = () => {
 
 	}
 
-	const onSubmitEntry = async () => {
+	const onSubmitEntry = async (newEntryContext) => {
 
 		let entry = {
 			weight: newEntryContext.weight,

@@ -25,7 +25,7 @@ const SummarySection = ({ onSubmitEntry }) => {
 
 		if (checkEntryIsValid()) {
 
-			await onSubmitEntry();
+			await onSubmitEntry(newEntryContext);
 
 		} else {
 			alert("Did you choose Weight (> 0), Date, and Time?");

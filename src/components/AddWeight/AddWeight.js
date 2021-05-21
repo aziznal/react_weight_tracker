@@ -2,8 +2,13 @@ import React from 'react';
 
 import PropTypes from 'prop-types';
 
+import NewEntryContext from '../../Contexts/NewEntryContext';
+
 import '../common_styles.scss';
 import './addweightmenu_styles.scss';
+
+import { getLocalDate, getLocalTime } from '../../utils/date-utils';
+import { convertKGtoLBS, convertLBStoKG } from '../../utils/weight-utils';
 
 import WeightForm from "./WeightForm/WeightForm";
 import MetricImperialSwitch from './MetricImperialSwitch';
@@ -21,6 +26,34 @@ const propTypes = {
 const AddWeight = ({ onSubmitEntry }) => {
 
 	console.log("AddWeight");
+
+
+	const newEntryContext = React.useContext(NewEntryContext);
+
+	const [weight, setWeight] = React.useState(0);
+	const [weightUnit, setWeightUnit] = React.useState("KG");
+
+	const [date, setDate] = React.useState(getLocalDate());
+	const [time, setTime] = React.useState(getLocalTime());
+
+	const onWeightUnitChange = (newUnit) => {
+
+		// convert weight to given new unit
+		setWeightUnit(newUnit);
+		let newWeight = Math.round((weightUnit === 'KG' ? convertKGtoLBS(weight) : convertLBStoKG(weight)) * 100) / 100;
+
+		// set current unit to the given new unit
+		setWeight(newWeight);
+
+	}
+
+	// Setting NewEntryContext states and onStateChanges
+	newEntryContext.weight = weight; newEntryContext.setWeight = setWeight;
+	newEntryContext.unit = weightUnit; newEntryContext.setUnit = onWeightUnitChange;
+	newEntryContext.date = date; newEntryContext.setDate = setDate;
+	newEntryContext.time = time; newEntryContext.setTime = setTime;
+
+
 
 	const [showAddWeightMenu, setShowAddWeightMenu] = React.useState(false);
 
