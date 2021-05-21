@@ -18,7 +18,7 @@ const propTypes = {
 
 }
 
-// FIXME: Entry List is re-rendering on every small change
+// NOTE: This component is currently not used anywhere
 
 const EntryList = React.memo(({ entries, onDeleteEntry, askBeforeDelete }) => {
 
