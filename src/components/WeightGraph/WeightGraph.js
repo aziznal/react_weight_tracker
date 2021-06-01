@@ -7,7 +7,6 @@ import './weightgraphmenu_styles.scss';
 
 import { Line } from 'react-chartjs-2';
 import { convertKGtoLBS, convertLBStoKG } from '../../utils/weight-utils';
-import NewEntryContext from '../../Contexts/NewEntryContext';
 
 
 const propTypes = {
@@ -21,9 +20,7 @@ const defaultProps = {
 
 const WeightGraph = ({ entries }) => {
 
-	// BUG: Weight unit is not being updated here when it's changed from another component
-	// FIXME: This is ineffecient because this component only cares about weight unit
-	const newEntryContext = React.useContext(NewEntryContext);
+	const [localWeightUnit, setLocalWeightUnit] = React.useState('KG');
 
 	const [showWeightGraphMenu, setShowWeightGraphMenu] = React.useState(false);
 
@@ -35,6 +32,21 @@ const WeightGraph = ({ entries }) => {
 	}
 
 
+	const createEntryInLocalWeightUnit = (weights, element) => {
+
+		if ( element.unit === localWeightUnit ) {
+			weights.push(element.weight);
+		} else {
+
+			if (localWeightUnit === 'KG') {
+				weights.push(convertLBStoKG(element.weight));
+			} else {
+				weights.push(convertKGtoLBS(element.weight));
+			}
+
+		}
+	}
+
 	const getGraphData = () => {
 
 		let weights = [];
@@ -42,11 +54,7 @@ const WeightGraph = ({ entries }) => {
 
 		entries.forEach(element => {
 
-			// one-liners go brrrrrrrrrRRRRRRRRRRRRRR
-			// REFACTOR into something a bit more readeable
-			weights.push(
-				element.unit === newEntryContext.unit ? element.weight : newEntryContext.unit === 'KG' ? convertLBStoKG(element.weight) : convertKGtoLBS(element.weight)
-			);
+			createEntryInLocalWeightUnit(weights, element);
 
 			labels.push(element.date + "\t" + element.time);
 
@@ -60,7 +68,7 @@ const WeightGraph = ({ entries }) => {
 
 			datasets: [{
 
-				label: 'Your last 10 entries (' + newEntryContext.unit + ")",
+				label: 'Your last 10 entries (' + localWeightUnit + ")",
 
 				data: weights.slice(-10),
 
@@ -87,7 +95,7 @@ const WeightGraph = ({ entries }) => {
 				<Line
 
 					width={600}
-					height={275}
+					height={225}
 
 					data={data}
 
@@ -115,6 +123,44 @@ const WeightGraph = ({ entries }) => {
 			<span className="close-menu-button" onClick={hideMenu}>
 				&times;
 			</span>
+
+
+			<div>
+
+				<div className="row radio-button-group" style={{ marginTop: 0 }}>
+
+					<div className="radio-button">
+
+						<input
+							name="weight-type"
+							type="radio"
+							id="local-pounds"
+
+							defaultChecked={ localWeightUnit === "LBS" ? "checked" : ""}
+
+							onChange={() => setLocalWeightUnit("LBS")}
+						/>
+
+						<label htmlFor="local-pounds">LBS</label>
+					</div>
+
+					<div className="radio-button">
+
+						<input
+							name="weight-type"
+							type="radio"
+							id="local-kilograms"
+							defaultChecked={localWeightUnit === "KG" ? "checked" : ""}
+							onChange={() => setLocalWeightUnit("KG")}
+						/>
+
+						<label htmlFor="local-kilograms">KG</label>
+					</div>
+
+				</div>
+
+			</div>
+
 
 			{ createGraph()}
 
