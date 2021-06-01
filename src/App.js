@@ -14,8 +14,6 @@ const App = () => {
 
 	// TODO: install ESLint and follow guidelines closer
 
-	// TODO - Design: Opt for tabs-based UI instead of the current weird sliding things. This would also allow a more effective use of Routes
-
 	// TODO - Design: Switch to a dark color scheme
 
 	return (
