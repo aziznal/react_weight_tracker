@@ -22,19 +22,9 @@ const WeightGraph = ({ entries }) => {
 
 	const [localWeightUnit, setLocalWeightUnit] = React.useState('KG');
 
-	const [showWeightGraphMenu, setShowWeightGraphMenu] = React.useState(false);
-
-	const setDynamicClassName = () => {
-
-		return "column sliding-menu weight-graph-menu" +
-			(showWeightGraphMenu ? " slide-from-left" : " closed-menu");
-
-	}
-
-
 	const createEntryInLocalWeightUnit = (weights, element) => {
 
-		if ( element.unit === localWeightUnit ) {
+		if (element.unit === localWeightUnit) {
 			weights.push(element.weight);
 		} else {
 
@@ -94,7 +84,7 @@ const WeightGraph = ({ entries }) => {
 			<div style={{ backgroundColor: "white" }}>
 				<Line
 
-					width={600}
+					width={700}
 					height={225}
 
 					data={data}
@@ -108,61 +98,55 @@ const WeightGraph = ({ entries }) => {
 	}
 
 
-	const showMenu = () => {
-		if (!showWeightGraphMenu) setShowWeightGraphMenu(true);
-	}
-
-	const hideMenu = () => {
-		if (showWeightGraphMenu) setShowWeightGraphMenu(false);
-	}
-
-
 	return (
-		<div className={setDynamicClassName()} onClick={showMenu}>
+		<div>
 
-			<span className="close-menu-button" onClick={hideMenu}>
-				&times;
-			</span>
+			<h1>
+				Graph of your last 10 weights
+			</h1>
 
+			<div className="column weight-graph">
 
-			<div>
+				<div>
 
-				<div className="row radio-button-group" style={{ marginTop: 0 }}>
+					<div className="row radio-button-group" style={{ marginTop: 0 }}>
 
-					<div className="radio-button">
+						<div className="radio-button">
 
-						<input
-							name="weight-type"
-							type="radio"
-							id="local-pounds"
+							<input
+								name="weight-type"
+								type="radio"
+								id="local-pounds"
 
-							defaultChecked={ localWeightUnit === "LBS" ? "checked" : ""}
+								defaultChecked={localWeightUnit === "LBS" ? "checked" : ""}
 
-							onChange={() => setLocalWeightUnit("LBS")}
-						/>
+								onChange={() => setLocalWeightUnit("LBS")}
+							/>
 
-						<label htmlFor="local-pounds">LBS</label>
-					</div>
+							<label htmlFor="local-pounds">LBS</label>
+						</div>
 
-					<div className="radio-button">
+						<div className="radio-button">
 
-						<input
-							name="weight-type"
-							type="radio"
-							id="local-kilograms"
-							defaultChecked={localWeightUnit === "KG" ? "checked" : ""}
-							onChange={() => setLocalWeightUnit("KG")}
-						/>
+							<input
+								name="weight-type"
+								type="radio"
+								id="local-kilograms"
+								defaultChecked={localWeightUnit === "KG" ? "checked" : ""}
+								onChange={() => setLocalWeightUnit("KG")}
+							/>
 
-						<label htmlFor="local-kilograms">KG</label>
+							<label htmlFor="local-kilograms">KG</label>
+						</div>
+
 					</div>
 
 				</div>
 
+
+				{createGraph()}
+
 			</div>
-
-
-			{ createGraph()}
 
 		</div>
 	)

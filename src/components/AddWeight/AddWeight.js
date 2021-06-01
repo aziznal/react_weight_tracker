@@ -1,7 +1,5 @@
 import React from 'react';
 
-import PropTypes from 'prop-types';
-
 import NewEntryContext from '../../Contexts/NewEntryContext';
 
 import '../common_styles.scss';
@@ -10,20 +8,16 @@ import './addweightmenu_styles.scss';
 import { getLocalDate, getLocalTime } from '../../utils/date-utils';
 import { convertKGtoLBS, convertLBStoKG } from '../../utils/weight-utils';
 
+
 import WeightForm from "./WeightForm/WeightForm";
 import MetricImperialSwitch from './MetricImperialSwitch';
 
 import SummarySection from './SummarySection/SummarySection';
 
-
-const propTypes = {
-
-	onSubmitEntry: PropTypes.func.isRequired
-
-};
+import BackendService from '../../services/BackendService';
 
 
-const AddWeight = ({ onSubmitEntry }) => {
+const AddWeight = () => {
 
 	const newEntryContext = React.useContext(NewEntryContext);
 
@@ -50,31 +44,22 @@ const AddWeight = ({ onSubmitEntry }) => {
 	newEntryContext.date = date; newEntryContext.setDate = setDate;
 	newEntryContext.time = time; newEntryContext.setTime = setTime;
 
+	const onSubmitEntry = async () => {
 
+		let entry = {
+			weight: newEntryContext.weight,
+			unit: newEntryContext.unit,
+			date: newEntryContext.date,
+			time: newEntryContext.time
+		}
 
-	const [showAddWeightMenu, setShowAddWeightMenu] = React.useState(false);
-
-	const setDynamicClassName = () => {
-
-		return "column sliding-menu weight-add-menu" +
-			(showAddWeightMenu ? " slide-from-left" : " closed-menu");
+		await BackendService.addEntry(entry);
 
 	}
 
-	const showMenu = () => {
-		if (!showAddWeightMenu) setShowAddWeightMenu(true);
-	}
-
-	const hideMenu = () => {
-		if (showAddWeightMenu) setShowAddWeightMenu(false);
-	}
 
 	return (
-		<div className={setDynamicClassName()} onClick={showMenu}>
-
-			<span className="close-menu-button" onClick={hideMenu}>
-				&times;
-			</span>
+		<div className="column weight-add">
 
 
 			<MetricImperialSwitch />
@@ -95,6 +80,5 @@ const AddWeight = ({ onSubmitEntry }) => {
 	)
 }
 
-AddWeight.propTypes = propTypes;
 
 export default AddWeight

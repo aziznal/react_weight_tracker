@@ -1,12 +1,14 @@
 .weight-list-container {
 	position: relative;
 
+	width: 90%;
+
 	.entry-list-scroll-to-top,
 	.entry-list-scroll-to-bottom {
 
 		position: absolute;
 
-		right: -.5em;
+		right: -3.125em;
 		
 		display: flex;
 
@@ -32,18 +34,18 @@
 		transition: 150ms background-color ease;
 
 		&:hover {
-			background-color: #69b6ff;
+			background-color: #9bc8e5;
 		}
 
 	}
 
 
 	.entry-list-scroll-to-bottom {
-		bottom: 0;
+		bottom: 1em;
 	}
 
 	.entry-list-scroll-to-top {
-		top: 2.1em;
+		top: 7.1em;
 	}
 
 }
@@ -92,7 +94,8 @@
 	box-sizing: border-box;
 
 	height: 500px;
-	width: 535px;
+	// width: 535px;
+	width: 100%;
 
 	overflow-y: scroll;
 

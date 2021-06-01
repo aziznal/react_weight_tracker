@@ -1,0 +1,23 @@
+.tabs-container {
+
+	position: relative;
+
+	display: flex;
+	flex-direction: column;
+
+	align-items: center;
+	justify-content: center;
+
+	
+	width: 800px;
+	
+	margin: auto;
+
+	background-color: #d7e5ff;
+
+	outline: 4px solid #16459c;
+
+	border-radius: 6px;
+	border-top-left-radius: 0;
+
+}

@@ -1,6 +1,5 @@
 import React from 'react';
 
-import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 
 import './homepage_styles.scss';
@@ -12,48 +11,38 @@ import { scrollEntrySectionToBottom } from '../../../utils/navigation-utils';
 
 import Header from './Header';
 
-import AddWeight from '../../AddWeight/AddWeight';
-
 import WeightList from '../../WeightList/WeightList';
+import WeightListContext from '../../../Contexts/WeightListContext';
 
 
 
 const HomePage = () => {
 
-	// REFACTOR: replace this with useReducer
 	const [entries, setEntries] = useState([]);
+
+	const weightListContext = React.useContext(WeightListContext);
+
 
 	const getEntries = async () => {
 
 		const entries = await BackendService.fetchAllEntries();
 
-		setEntries(entries);
+		weightListContext.setWeights(entries);
 
 	}
 
-	const onSubmitEntry = async (newEntryContext) => {
 
-		let entry = {
-			weight: newEntryContext.weight,
-			unit: newEntryContext.unit,
-			date: newEntryContext.date,
-			time: newEntryContext.time
-		}
+	weightListContext.weights = entries;
 
-		await BackendService.addEntry(entry);
+	weightListContext.setWeights = setEntries;
+	weightListContext.refreshWeights = getEntries;
 
-		// Refresh entry list afterwards
-		await getEntries();
-
-		scrollEntrySectionToBottom();
-
-	}
 
 	const onDeleteEntry = async (id) => {
 
 		await BackendService.deleteEntry(id);
 
-		await getEntries();
+		await weightListContext.refreshWeights();
 
 		scrollEntrySectionToBottom();
 
@@ -61,39 +50,32 @@ const HomePage = () => {
 
 	useEffect(() => {
 
-		(async () => { await getEntries(); })();
+		(async () => { await weightListContext.refreshWeights(); scrollEntrySectionToBottom(); })();
 
-	}, [])
+	}, [weightListContext])
+
+
 
 	return (
-		<div className="body-wrapper">
+		<div className="homepage-container">
 
-			<div className="homepage-container" >
+			<Header />
 
-				<Header />
+			<div className="separator" style={{ marginBlock: "3em" }} />
 
-
-				<div className="separator"></div>
+			<div className="row">
 
 				<WeightList
-
-					entries={entries}
 					onDeleteEntry={onDeleteEntry}
-
 				/>
-
-				<div className="row">
-					<Link to={'/about'}>About</Link>
-				</div>
-
-				<div className="separator"></div>
 
 			</div>
 
+			<div className="separator" style={{ marginBlock: "3em" }} />
 
-			<AddWeight onSubmitEntry={onSubmitEntry} />
-
-			<WeightGraph entries={entries} />
+			<div className="row">
+				<WeightGraph entries={entries} />
+			</div>
 
 		</div>
 	)

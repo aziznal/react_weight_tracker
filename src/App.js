@@ -2,9 +2,12 @@ import { BrowserRouter as Router, Route } from 'react-router-dom'
 
 import './StyleNormalize.css'
 import './App.scss';
+import './tabs-ui.scss';
 
 import HomePage from './components/pages/HomePage/HomePage';
 import AboutPage from './components/pages/AboutPage/AboutPage';
+import TabsList from './components/TabsList/TabsList';
+import AddWeight from './components/AddWeight/AddWeight';
 
 
 const App = () => {
@@ -19,9 +22,18 @@ const App = () => {
 
 		<Router>
 
-			<Route path='/' exact component={HomePage} />
+			
+			<div className="tabs-container">
 
-			<Route path='/about' exact component={AboutPage} />
+				<TabsList />
+
+				<Route path='/' exact component={HomePage} />
+
+				<Route path='/add-weight' exact component={AddWeight} />
+
+				<Route path='/about' exact component={AboutPage} />
+
+			</div>
 
 		</Router>
 

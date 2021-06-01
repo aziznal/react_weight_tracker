@@ -12,20 +12,21 @@ import Entry from './Entry/Entry';
 import { scrollEntrySectionToBottom, scrollEntrySectionToTop } from '../../utils/navigation-utils'
 
 import AskBeforeDeleteCheckBox from './AskBeforeDeleteCheckBox';
+import WeightListContext from '../../Contexts/WeightListContext';
 
 
 const propTypes = {
-
-	entries: PropTypes.array.isRequired,
 
 	onDeleteEntry: PropTypes.func.isRequired
 
 };
 
 
-const WeightList = ({ entries, onDeleteEntry }) => {
+const WeightList = ({ onDeleteEntry }) => {
 	
 	const [askBeforeDelete, setAskBeforeDelete] = React.useState(true);
+
+	const weightListContext = React.useContext(WeightListContext);
 
 	const onDeleteEntryWrapper = (entry_id) => {
 
@@ -73,7 +74,7 @@ const WeightList = ({ entries, onDeleteEntry }) => {
 
 		const formattedEntryList = [];
 
-		for (let entry of entries) {
+		for (let entry of weightListContext.weights) {
 
 			formattedEntryList.push(
 				<Entry key={entry.id} entryData={entry} onDeleteEntry={onDeleteEntryWrapper} />
@@ -87,6 +88,10 @@ const WeightList = ({ entries, onDeleteEntry }) => {
 
 	return (
 		<div className="weight-list-container">
+
+			<h1>
+				Weight Entries List
+			</h1>
 
 			<AskBeforeDeleteCheckBox
 
@@ -106,7 +111,8 @@ const WeightList = ({ entries, onDeleteEntry }) => {
 				</ul>
 
 			</section>
-
+				
+			{/* TODO: Change the up and down symbols into actual icons */}
 			<span className="entry-list-scroll-to-top" onClick={scrollEntrySectionToTop}>
 				^
 			</span>
